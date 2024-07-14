@@ -1,0 +1,51 @@
+{
+    "name": "PlayerActions",
+    "maps": [
+        {
+            "name": "PlayerClicks",
+            "id": "6cb216f1-3ea4-4358-9698-ec4444ff1e26",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "c34c1cb2-64ff-4197-80c7-d5b6cc7a6b44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eab056fb-fec7-40d8-a6bc-d984584d4d07",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KM",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "KM",
+            "bindingGroup": "KM",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

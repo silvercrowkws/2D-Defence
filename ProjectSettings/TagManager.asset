@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Castle
+  - Enemy
+  - Solider
+  - Door
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2413735245
+    locked: 0
+  - name: Castle
+    uniqueID: 2270353583
+    locked: 0
+  - name: Door
+    uniqueID: 3400755039
+    locked: 0
+  - name: Enemy
+    uniqueID: 3391069245
+    locked: 0
+  - name: Soilder
+    uniqueID: 1487491793
+    locked: 0
