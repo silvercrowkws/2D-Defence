@@ -76,12 +76,12 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 선택한 타일의 트랜스폼
     /// </summary>
-    Transform clickedTileTransform;
+    //Transform clickedTileTransform;
 
     /// <summary>
     /// 선택한 솔져의 위치를 전달하는 델리게이트
     /// </summary>
-    public Action<Transform> onclickedTileTransform;
+    public Action<Vector3Int> onClickedTileTransform;
 
     private void Awake()
     {
@@ -141,12 +141,23 @@ public class Player : MonoBehaviour
 
                         followMouse.SetImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
 
+                        Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
+                        //Debug.Log($"cellPosition : {cellPosition}");
+                        onClickedTileTransform?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
+
+                        Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
+                        //Debug.Log($"tileWorldPosition : {tileWorldPosition}");
+
                         if (clickedTile == barbarianTile)
                         {
                             Debug.Log($"{clickedTile.name} 선택");
                             upgradeAble = true;                     // 강화 가능 변수 on
 
                             //clickedTileTransform = clickedTile.GetComponent<Transform>();       // 이거 안되는데?
+
+                            /*clickedTileTransform = tilemap.transform;  // 클릭한 타일맵의 트랜스폼을 가져옴
+                            onClickedTileTransform?.Invoke(tilemap.transform); // 델리게이트로 트랜스폼 전달*/
+                            Debug.Log(tilemap.transform);
                             // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
                             // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
                         }
