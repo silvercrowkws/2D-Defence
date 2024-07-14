@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
                             Debug.Log($"{clickedTile.name} 선택");
                             upgradeAble = true;                     // 강화 가능 변수 on
 
-                            clickedTileTransform = clickedTile.GetComponent<Transform>();       // 이거 안되는데?
+                            //clickedTileTransform = clickedTile.GetComponent<Transform>();       // 이거 안되는데?
                             // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
                             // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
                         }
