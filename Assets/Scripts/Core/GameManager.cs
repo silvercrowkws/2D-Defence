@@ -22,14 +22,40 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
     }
 
+    private void Start()
+    {
+        //player.onCellPosition += SoliderSet;
+    }
+
     protected override void OnInitialize()
     {
         base.OnInitialize();
         player = FindAnyObjectByType<Player>();
     }
 
+    /*/// <summary>
+    /// 솔저를 배치하는 함수
+    /// </summary>
+    private void SoliderSet(Vector3Int soliderPosition)
+    {
+
+    }
+
+    /// <summary>
+    /// 솔저를 강화하는 함수
+    /// </summary>
+    private void SoliderUpgrade()
+    {
+
+    }*/
+
+
+
+
+
+
 #if UNITY_EDITOR
-    
+
 
 #endif
 }

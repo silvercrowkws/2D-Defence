@@ -16,7 +16,7 @@ public class FollowMouse : MonoBehaviour
     /// <summary>
     /// 자식의 이미지
     /// </summary>
-    Image soliderImage;
+    public Image soliderImage;
 
     /// <summary>
     /// 이미지의 컬러
@@ -29,7 +29,7 @@ public class FollowMouse : MonoBehaviour
     public Sprite[] soliders;
 
     /// <summary>
-    /// solider 버튼이 눌러졌는지 확인하는 변수
+    /// solider 버튼이 눌러졌는지 확인하는 변수(캐릭터 픽하는 버튼)
     /// </summary>
     public bool soliderButtonOn = false;
 
@@ -72,7 +72,7 @@ public class FollowMouse : MonoBehaviour
     /// </summary>
     private void OnBarbarianButtonClick()
     {
-        SetImageColor();
+        SetFollowImageColor();
         soliderImage.sprite = soliders[0];
     }
 
@@ -81,7 +81,7 @@ public class FollowMouse : MonoBehaviour
     /// </summary>
     private void OnWarriorButtonClick()
     {
-        SetImageColor();
+        SetFollowImageColor();
         soliderImage.sprite = soliders[1];
 
     }
@@ -91,7 +91,7 @@ public class FollowMouse : MonoBehaviour
     /// </summary>
     private void OnWizardButtonClick()
     {
-        SetImageColor();
+        SetFollowImageColor();
         soliderImage.sprite = soliders[2];
     }
 
@@ -99,7 +99,7 @@ public class FollowMouse : MonoBehaviour
     /// 버튼이 클릭되었을 때 마우스에 따라다니는 이미지의 알파를 조절하는 함수
     /// solider를 설치할 수 있는지 확인하는 bool변수 컨트롤 중
     /// </summary>
-    void SetImageColor()
+    void SetFollowImageColor()
     {
         imageColor.a = 1.0f;
         soliderImage.color = imageColor;
@@ -109,7 +109,7 @@ public class FollowMouse : MonoBehaviour
     /// <summary>
     /// 버튼 클릭이 취소되었을 때 실행되는 함수
     /// </summary>
-    public void SetImageColorDisable()
+    public void SetFollowImageColorDisable()
     {
         imageColor.a = 0.0f;
         soliderImage.color = imageColor;

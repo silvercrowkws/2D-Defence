@@ -83,6 +83,18 @@ public class Player : MonoBehaviour
     /// </summary>
     public Action<Vector3Int> onClickedTileTransform;
 
+    /// <summary>
+    /// 선택한 보드의 위치
+    /// </summary>
+    public Action<Vector3Int> onCellPosition;
+
+    /// <summary>
+    /// 클릭한 셀의 위치
+    /// </summary>
+    Vector3Int cellPosition;
+
+    
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -130,6 +142,7 @@ public class Player : MonoBehaviour
             {
                 foundTile = true;
                 //Debug.Log($"{tilemap.name} 타일맵에서 타일을 찾음");
+                cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
 
                 if (foundTile)
                 {
@@ -139,9 +152,9 @@ public class Player : MonoBehaviour
                         setAble = false;                            // 설치 가능 변수 off
                         Debug.Log("soliderTilemap 클릭");
 
-                        followMouse.SetImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
+                        followMouse.SetFollowImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
 
-                        Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
+                        cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
                         //Debug.Log($"cellPosition : {cellPosition}");
                         onClickedTileTransform?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
 
@@ -153,10 +166,6 @@ public class Player : MonoBehaviour
                             Debug.Log($"{clickedTile.name} 선택");
                             upgradeAble = true;                     // 강화 가능 변수 on
 
-                            //clickedTileTransform = clickedTile.GetComponent<Transform>();       // 이거 안되는데?
-
-                            /*clickedTileTransform = tilemap.transform;  // 클릭한 타일맵의 트랜스폼을 가져옴
-                            onClickedTileTransform?.Invoke(tilemap.transform); // 델리게이트로 트랜스폼 전달*/
                             Debug.Log(tilemap.transform);
                             // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
                             // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
@@ -186,6 +195,8 @@ public class Player : MonoBehaviour
                         if (followMouse.soliderButtonOn)            // 솔져 버튼이 눌러진 상태이면
                         {
                             Debug.Log("해당 위치에 설치 가능");
+                            //onCellPosition?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
+                            SoliderSet(cellPosition);
 
                             setAble = true;                         // 설치 가능 변수 on
                             // 여기에 해당 위치에 설치를 묻는 작업 필요
@@ -231,9 +242,30 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 솔저를 배치하는 함수
     /// </summary>
-    private void SoliderSet()
+    private void SoliderSet(Vector3Int soliderPosition)
     {
+        Debug.Log("SoliderSet 함수 호출됨");
+        Debug.Log($"현재 soliderImage: {followMouse.soliderImage}");
+        Debug.Log($"soliderPosition: {soliderPosition}");
 
+        //Vector3Int boardCell = new Vector3Int(soliderPosition.x, soliderPosition.y, soliderPosition.z);
+        //Debug.Log(soliderPosition);
+
+        if (followMouse.soliderImage.sprite == followMouse.soliders[0])             // 바바리안을 클릭했었다
+        {
+            soliderTilemap.SetTile(soliderPosition, barbarianTile);
+            Debug.Log("바바리안 타일 설치");
+        }
+        else if(followMouse.soliderImage.sprite == followMouse.soliders[1])        // 전사를 클릭했었다
+        {
+            soliderTilemap.SetTile(soliderPosition, warriorTile);
+            Debug.Log("전사 타일 설치");
+        }
+        else if(followMouse.soliderImage.sprite == followMouse.soliders[2])        // 마법사를 클릭했었다
+        {
+            soliderTilemap.SetTile(soliderPosition, wizardTile);
+            Debug.Log("마법사 타일 설치");
+        }
     }
 
     /// <summary>

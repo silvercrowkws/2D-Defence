@@ -13,6 +13,11 @@ public class SoliderButton : MonoBehaviour
     /// </summary>
     Button[] buttons;
 
+    /// <summary>
+    /// 업그레이드 클래스
+    /// </summary>
+    Upgrade upgrade;
+
     public Action onBarbarianButtonClick;
     public Action onWarriorButtonClick;
     public Action onWizardButtonClick;
@@ -25,12 +30,18 @@ public class SoliderButton : MonoBehaviour
         buttons[2].onClick.AddListener(Wizard);
     }
 
+    private void Start()
+    {
+        upgrade = FindAnyObjectByType<Upgrade>();
+    }
+
     /// <summary>
     /// 바바리안 버튼을 클릭했을 때 실행되는 함수
     /// </summary>
     private void Barbarian()
     {
         Debug.Log($"바바리안 바튼 클릭");
+        upgrade.SetActiveFalse();
         onBarbarianButtonClick?.Invoke();
     }
 
@@ -40,6 +51,7 @@ public class SoliderButton : MonoBehaviour
     private void Warrior()
     {
         Debug.Log($"전사 버튼 클릭");
+        upgrade.SetActiveFalse();
         onWarriorButtonClick?.Invoke();
     }
 
@@ -49,6 +61,7 @@ public class SoliderButton : MonoBehaviour
     private void Wizard()
     {
         Debug.Log($"마법사 버튼 클릭");
+        upgrade.SetActiveFalse();
         onWizardButtonClick?.Invoke();
     }
 }

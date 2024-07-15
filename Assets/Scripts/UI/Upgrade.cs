@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,11 @@ public class Upgrade : MonoBehaviour
     /// No 버튼
     /// </summary>
     Button noButton;
+
+    /// <summary>
+    /// Upgrade? 텍스트
+    /// </summary>
+    TextMeshProUGUI upgradeText;
 
     /// <summary>
     /// Yes 버튼의 이미지
@@ -51,22 +57,29 @@ public class Upgrade : MonoBehaviour
         Transform child = transform.GetChild(0);
         yesButton = child.GetComponent<Button>();
         yesButton.onClick.AddListener(YesUpgrade);
+        //yesButton.gameObject.SetActive(false);              // 처음엔 게임 오브젝트 안보이게 만들기
 
-        yesButtonImage = yesButton.GetComponent<Image>();
+        /*yesButtonImage = yesButton.GetComponent<Image>();
         yesColor = yesButtonImage.color;
         yesColor.a = fadeColor;                             // 알파값 0으로 만들기
         yesButtonImage.color = yesColor;
-        yesButtonImage.raycastTarget = false;               // 처음엔 raycastTarget 끄기
+        yesButtonImage.raycastTarget = false;               // 처음엔 raycastTarget 끄기*/
 
         child = transform.GetChild(1);
         noButton = child.GetComponent<Button>();
         noButton.onClick.AddListener(NoUpgrade);
+        //noButton.gameObject.SetActive(false);               // 처음엔 게임 오브젝트 안보이게 만들기
 
-        noButtonImage = noButton.GetComponent<Image>();
+        child = transform.GetChild(2);
+        upgradeText = child.GetComponent <TextMeshProUGUI>();
+
+        SetActiveFalse();
+
+        /*noButtonImage = noButton.GetComponent<Image>();
         noColor = noButtonImage.color;
         noColor.a = fadeColor;                              // 알파값 0으로 만들기
         noButtonImage.color = noColor;
-        noButtonImage.raycastTarget = false;                // 처음엔 raycastTarget 끄기
+        noButtonImage.raycastTarget = false;                // 처음엔 raycastTarget 끄기*/
     }
 
     private void Start()
@@ -102,14 +115,19 @@ public class Upgrade : MonoBehaviour
         // UI 버튼의 위치를 설정
         rectTransform.anchoredPosition = localPoint;
 
-        yesColor.a = appearColor;                   // 알파값 1로 만들어 보이게 만들기
+        SetActiveTrue();
+
+        /*yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);*/
+
+        /*yesColor.a = appearColor;                   // 알파값 1로 만들어 보이게 만들기
         yesButtonImage.color = yesColor;
 
         noColor.a = appearColor;
         noButtonImage.color = noColor;
 
         yesButtonImage.raycastTarget = true;        // raycastTarget 켜기
-        noButtonImage.raycastTarget = true;
+        noButtonImage.raycastTarget = true;*/
     }
 
     /// <summary>
@@ -125,14 +143,38 @@ public class Upgrade : MonoBehaviour
     /// </summary>
     private void NoUpgrade()
     {
-        yesColor.a = fadeColor;                     // 알파값 안보이게 만들기
+        SetActiveFalse();
+
+        /*yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);*/
+
+        /*yesColor.a = fadeColor;                     // 알파값 안보이게 만들기
         yesButtonImage.color = yesColor;
 
         noColor.a = fadeColor;
         noButtonImage.color = noColor;
 
         yesButtonImage.raycastTarget = false;       // raycastTarget 끄기
-        noButtonImage.raycastTarget = false;
+        noButtonImage.raycastTarget = false;*/
+    }
 
+    /// <summary>
+    /// 버튼들을 보이게 만드는 함수
+    /// </summary>
+    void SetActiveTrue()
+    {
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        upgradeText.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 버튼들을 안보이게 만드는 함수
+    /// </summary>
+    public void SetActiveFalse()
+    {
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        upgradeText.gameObject.SetActive(false);
     }
 }
