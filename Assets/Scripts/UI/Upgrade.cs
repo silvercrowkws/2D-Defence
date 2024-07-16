@@ -86,19 +86,15 @@ public class Upgrade : MonoBehaviour
     {
         player = GameManager.Instance.Player;
 
-        player.onClickedTileTransform += AAA;
+        player.onClickedTileTransform += UpgradeButtonPosition;
     }
 
     /// <summary>
-    /// 플레이어의 델리게이트를 받아서 transform을 리턴하는 함수
+    /// 플레이어의 델리게이트를 받아서 강화 버튼의 위치를 바꾸는 함수
     /// </summary>
     /// <param name="cellPosition">solider가 클릭된 위치</param>
-    private void AAA(Vector3Int cellPosition)
+    private void UpgradeButtonPosition(Vector3Int cellPosition)
     {
-        /*Debug.Log(cellPosition.x);
-        Debug.Log(cellPosition.y);
-        Debug.Log(cellPosition.z);*/
-
         // 월드 좌표를 스크린 좌표로 변환
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(cellPosition);
 
@@ -135,7 +131,8 @@ public class Upgrade : MonoBehaviour
     /// </summary>
     private void YesUpgrade()
     {
-        
+        SetActiveFalse();
+        player.boardClickAble = true;
     }
 
     /// <summary>
@@ -144,6 +141,7 @@ public class Upgrade : MonoBehaviour
     private void NoUpgrade()
     {
         SetActiveFalse();
+        player.boardClickAble = true;
 
         /*yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);*/

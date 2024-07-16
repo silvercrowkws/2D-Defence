@@ -74,6 +74,11 @@ public class Player : MonoBehaviour
     public bool upgradeAble = false;
 
     /// <summary>
+    /// 보드를 클릭할 수 있는지 확인하는 변수(solider를 누른게 아니면 true, solider를 눌렀으면 false)
+    /// </summary>
+    public bool boardClickAble = true;
+
+    /// <summary>
     /// 선택한 타일의 트랜스폼
     /// </summary>
     //Transform clickedTileTransform;
@@ -98,6 +103,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         inputActions = new PlayerInputActions();
+        boardClickAble = true;
     }
 
     private void OnEnable()
@@ -123,109 +129,115 @@ public class Player : MonoBehaviour
     /// <param name="context"></param>
     private void BoardClick(InputAction.CallbackContext context)
     {
-        // 현재 마우스 위치를 스크린 좌표로 가져옴
-        Vector2 screenPosition = Mouse.current.position.ReadValue();
-
-        // 스크린 좌표를 월드 좌표로 변환
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-        worldPosition.z = 0; // 2D 타일맵에서 z 좌표는 0으로 설정
-
-        bool foundTile = false;
-
-        // 타일맵 배열을 만들어서 각 타일맵을 순회하면서 검사
-        Tilemap[] tilemaps = { soliderTilemap, enemyTilemap, castleTilemap, groundTilemap};     // 타일맵 순서 주의
-
-        foreach (Tilemap tilemap in tilemaps)
+        if(boardClickAble)      // solider를 누른게 아니면 true, solider를 눌렀으면 false
         {
-            if (IsTileAtPosition(tilemap, worldPosition))
+            // 현재 마우스 위치를 스크린 좌표로 가져옴
+            Vector2 screenPosition = Mouse.current.position.ReadValue();
+
+            // 스크린 좌표를 월드 좌표로 변환
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+            worldPosition.z = 0; // 2D 타일맵에서 z 좌표는 0으로 설정
+
+            bool foundTile = false;
+
+            // 타일맵 배열을 만들어서 각 타일맵을 순회하면서 검사
+            Tilemap[] tilemaps = { soliderTilemap, enemyTilemap, castleTilemap, groundTilemap};     // 타일맵 순서 주의
+
+            foreach (Tilemap tilemap in tilemaps)
             {
-                foundTile = true;
-                //Debug.Log($"{tilemap.name} 타일맵에서 타일을 찾음");
-                cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
-
-                if (foundTile)
+                if (IsTileAtPosition(tilemap, worldPosition))
                 {
-                    // 타일이 soliderTilemap인 경우
-                    if (tilemap == soliderTilemap)
+                    foundTile = true;
+                    //Debug.Log($"{tilemap.name} 타일맵에서 타일을 찾음");
+                    cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
+
+                    if (foundTile)
                     {
-                        setAble = false;                            // 설치 가능 변수 off
-                        Debug.Log("soliderTilemap 클릭");
-
-                        followMouse.SetFollowImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
-
-                        cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
-                        //Debug.Log($"cellPosition : {cellPosition}");
-                        onClickedTileTransform?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
-
-                        Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
-                        //Debug.Log($"tileWorldPosition : {tileWorldPosition}");
-
-                        if (clickedTile == barbarianTile)
+                        // 타일이 soliderTilemap인 경우
+                        if (tilemap == soliderTilemap)
                         {
-                            Debug.Log($"{clickedTile.name} 선택");
-                            upgradeAble = true;                     // 강화 가능 변수 on
+                            boardClickAble = false;
+                            setAble = false;                            // 설치 가능 변수 off
+                            Debug.Log("soliderTilemap 클릭");
 
-                            Debug.Log(tilemap.transform);
-                            // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
-                            // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
+                            followMouse.SetFollowImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
+
+                            cellPosition = tilemap.WorldToCell(worldPosition);   // 셀 위치 가져오기
+                            //Debug.Log($"cellPosition : {cellPosition}");
+                            onClickedTileTransform?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
+
+                            Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
+                            //Debug.Log($"tileWorldPosition : {tileWorldPosition}");
+
+                            if (clickedTile == barbarianTile)
+                            {
+                                Debug.Log($"{clickedTile.name} 선택");
+                                upgradeAble = true;                     // 강화 가능 변수 on
+
+                                Debug.Log(tilemap.transform);
+                                // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
+                                // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
+                            }
+                            else if(clickedTile == warriorTile)
+                            {
+                                Debug.Log($"{clickedTile.name} 선택");
+                                upgradeAble = true;                     // 강화 가능 변수 on
+                            }
+                            else if(clickedTile == wizardTile)
+                            {
+                                Debug.Log($"{clickedTile.name} 선택");
+                                upgradeAble = true;                     // 강화 가능 변수 on
+                            }
                         }
-                        else if(clickedTile == warriorTile)
+
+                        // 타일이 enemyTilemap인 경우
+                        else if (tilemap == enemyTilemap)
                         {
-                            Debug.Log($"{clickedTile.name} 선택");
-                            upgradeAble = true;                     // 강화 가능 변수 on
+                            Debug.Log("enemyTilemap 클릭");
                         }
-                        else if(clickedTile == wizardTile)
+
+                        // 타일이 castleTilemap인 경우
+                        else if (tilemap == castleTilemap)
                         {
-                            Debug.Log($"{clickedTile.name} 선택");
-                            upgradeAble = true;                     // 강화 가능 변수 on
+                            Debug.Log("castleTilemap 클릭");
+                            if (followMouse.soliderButtonOn)            // 솔져 버튼이 눌러진 상태이면
+                            {
+                                Debug.Log("해당 위치에 설치 가능");
+                                //onCellPosition?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
+                                SoliderSet(cellPosition);
+
+                                setAble = true;                         // 설치 가능 변수 on
+                                // 여기에 해당 위치에 설치를 묻는 작업 필요
+
+                                // 다음으로 SoliderSet 함수 필요
+                            }
                         }
-                    }
 
-                    // 타일이 enemyTilemap인 경우
-                    else if (tilemap == enemyTilemap)
-                    {
-                        Debug.Log("enemyTilemap 클릭");
-                    }
-
-                    // 타일이 castleTilemap인 경우
-                    else if (tilemap == castleTilemap)
-                    {
-                        Debug.Log("castleTilemap 클릭");
-                        if (followMouse.soliderButtonOn)            // 솔져 버튼이 눌러진 상태이면
+                        // 타일이 groundTilemap인 경우
+                        else if (tilemap == groundTilemap)
                         {
-                            Debug.Log("해당 위치에 설치 가능");
-                            //onCellPosition?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
-                            SoliderSet(cellPosition);
+                            Debug.Log("groundTilemap 클릭");
+                        }
 
-                            setAble = true;                         // 설치 가능 변수 on
-                            // 여기에 해당 위치에 설치를 묻는 작업 필요
-
-                            // 다음으로 SoliderSet 함수 필요
+                        // 타일을 못찾았을 경우
+                        else
+                        {
+                            Debug.Log("못찾음");
                         }
                     }
-
-                    // 타일이 groundTilemap인 경우
-                    else if (tilemap == groundTilemap)
-                    {
-                        Debug.Log("groundTilemap 클릭");
-                    }
-
-                    // 타일을 못찾았을 경우
-                    else
-                    {
-                        Debug.Log("못찾음");
-                    }
+                    break;      // 타일을 찾았으면 더 이상 검사하지 않음
                 }
-                break;      // 타일을 찾았으면 더 이상 검사하지 않음
             }
+
+            if (!foundTile)
+            {
+                Debug.Log("해당 위치에 타일이 없음");
+                Debug.Log(foundTile);
+            }
+
         }
 
-        if (!foundTile)
-        {
-            Debug.Log("해당 위치에 타일이 없음");
-            Debug.Log(foundTile);
-        }
     }
 
     private bool IsTileAtPosition(Tilemap tilemap, Vector3 worldPosition)
@@ -266,6 +278,7 @@ public class Player : MonoBehaviour
             soliderTilemap.SetTile(soliderPosition, wizardTile);
             Debug.Log("마법사 타일 설치");
         }
+        followMouse.SetFollowImageColorDisable();
     }
 
     /// <summary>
