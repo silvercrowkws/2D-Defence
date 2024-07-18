@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 public class Player : MonoBehaviour
 {
     /// <summary>
-    /// 인숲 시스템
+    /// 인풋 시스템
     /// </summary>
     PlayerInputActions inputActions;
 

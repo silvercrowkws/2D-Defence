@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Enemy
   - Solider
   - Door
-  - 
+  - Trail
   - 
   - 
   - 
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Door
     uniqueID: 3400755039
+    locked: 0
+  - name: Trail
+    uniqueID: 3199005289
     locked: 0
   - name: Enemy
     uniqueID: 3391069245
