@@ -6228,6 +6228,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cyclopsPrefab: {fileID: 6283245857862997062, guid: 2aad59233630132429b59612b9fd2807, type: 3}
+  mouse_1Prefab: {fileID: 2552498326764343771, guid: 9e298afc0776e624aa1e42b87ffc9f9c, type: 3}
+  mouse_2Prefab: {fileID: 8239128652978102280, guid: 053062885fec1a0488d68c71022b6fd2, type: 3}
+  ghost_1Prefab: {fileID: 3705929874706196209, guid: e34270eb48c07024b961b0a68b8d82b8, type: 3}
+  ghost_2Prefab: {fileID: 9130548133973439277, guid: e95b21aee4ed6db43897df6b6e8fe2e4, type: 3}
+  spider_1Prefab: {fileID: 6393666078710067507, guid: b9173f7c048509449ab1ab1fbe453734, type: 3}
+  spider_2Prefab: {fileID: 8505244320000190379, guid: dfc98096019d30749b892ad6ef30d2ad, type: 3}
+  lichPrefab: {fileID: 1536062779789419961, guid: f16704973af00e94fb77a58c844fb1aa, type: 3}
 --- !u!1 &2097035456
 GameObject:
   m_ObjectHideFlags: 0

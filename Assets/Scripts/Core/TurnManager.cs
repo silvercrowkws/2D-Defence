@@ -23,7 +23,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// <summary>
     /// 현재 턴 번호(몇번째 턴인지)
     /// </summary>
-    int turnNumber = 1;
+    public int turnNumber = 1;
 
     /// <summary>
     /// 턴이 진행될지 여부(true면 턴이 진행되고 false면 턴이 진행되지 않는다)

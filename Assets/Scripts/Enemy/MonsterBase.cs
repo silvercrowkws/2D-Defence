@@ -25,6 +25,26 @@ public class MonsterBase : MonoBehaviour
     protected float moveSpeed = 2.0f;
 
     /// <summary>
+    /// 몬스터의 체력
+    /// </summary>
+    protected float hp = 30.0f;
+
+    /// <summary>
+    /// 몬스터 체력 프로퍼티
+    /// </summary>
+    public float HP
+    {
+        get => hp;
+        set
+        {
+            if(hp != value)
+            {
+                hp = value;
+            }
+        }
+    } 
+
+    /// <summary>
     /// 웨이포인트에 도착하면 대기하는 시간
     /// </summary>
     protected float waitTime = 1.0f;
