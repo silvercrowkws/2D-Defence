@@ -8,7 +8,7 @@ public class GhostMonster_2 : MonsterBase
     {
         moveSpeed = 3;
         waitTime = 0;
-        hp = 50.0f;
+        hp = 75.0f;
         base.Start();
     }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6640397760356942998}
   - component: {fileID: 6283245857862997062}
   - component: {fileID: 3885132407460275656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cyclops
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

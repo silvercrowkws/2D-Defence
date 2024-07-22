@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Solider
   - Door
   - Trail
-  - 
+  - AttackRange
   - 
   - 
   - 
@@ -56,6 +57,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3391069245
+    locked: 0
+  - name: AttackRange
+    uniqueID: 4256723707
     locked: 0
   - name: Soilder
     uniqueID: 1487491793

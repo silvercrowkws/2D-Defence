@@ -47,6 +47,7 @@ public class MonsterBase : MonoBehaviour
                     monsterDieCount++;          // 죽은 몬스터의 숫자를 증가시키고
                     Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
                     //IncrementMonsterDieCount();
+                    onDie?.Invoke();            // 몬스터가 죽었다고 델리게이트로 알림(공격순위 리스트에서 빼기 위해)
 
                     TurnEndProcess();
                     Destroy(gameObject);        // 게임 오브젝트 파괴
@@ -61,9 +62,9 @@ public class MonsterBase : MonoBehaviour
     static int monsterDieCount = 0;
 
     /// <summary>
-    /// 턴 종료 프로세스를 실행시키라는 델리게이트
+    /// 몬스터가 죽었다고 알리는 델리게이트
     /// </summary>
-    //public Action onTurnEndProcess;
+    public Action onDie;
 
     /// <summary>
     /// 웨이포인트에 도착하면 대기하는 시간
@@ -152,7 +153,6 @@ public class MonsterBase : MonoBehaviour
         if (monsterDieCount == enemySpawner.maxMonsterCount)     // 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
         {
             monsterDieCount = 0;                                // 죽은 몬스터의 숫자 초기화
-            //onTurnEndProcess?.Invoke();                         // 턴 종료 프로세스 실행
             turnManager.OnTurnEnd2();
         }
     }

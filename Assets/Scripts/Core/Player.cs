@@ -49,6 +49,13 @@ public class Player : MonoBehaviour
     public TileBase wizardTile;
 
     /// <summary>
+    /// 공격 범위 게임 오브젝트
+    /// </summary>
+    public GameObject collider_2_Tile;      // 바바리안 공격 범위
+    public GameObject collider_3_Tile;      // 전사 공격 범위
+    public GameObject collider_4_Tile;      // 마법사 공격 범위
+
+    /// <summary>
     /// enemy 타일을 연결할 변수
     /// </summary>
     public TileBase enemyTile;      // 이건 타일맵이 아니라 특정 타일 하나인듯
@@ -263,21 +270,29 @@ public class Player : MonoBehaviour
         //Vector3Int boardCell = new Vector3Int(soliderPosition.x, soliderPosition.y, soliderPosition.z);
         //Debug.Log(soliderPosition);
 
+        Vector3 centerPosition = new Vector3(0.5f, 0.5f, 0);        // solider의 중앙 위치를 맞추기 위해
+
         if (followMouse.soliderImage.sprite == followMouse.soliders[0])             // 바바리안을 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, barbarianTile);
+            Instantiate(collider_2_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("바바리안 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[1])        // 전사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, warriorTile);
+            Instantiate(collider_3_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("전사 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[2])        // 마법사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, wizardTile);
+            Instantiate(collider_4_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("마법사 타일 설치");
+
+            // soliderPosition 자리에 soliderTilemap.CellToWorld(soliderPosition)게 맞나?
         }
+
         followMouse.SetFollowImageColorDisable();
     }
 
