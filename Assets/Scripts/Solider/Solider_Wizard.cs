@@ -8,5 +8,6 @@ public class Solider_Wizard : AttackBase
     {
         damage = 50.0f;     // 강화해서 50% 증가하면 75되게
         attackSpeed = 3.0f;
+        base.Start();
     }
 }

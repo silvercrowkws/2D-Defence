@@ -31,6 +31,11 @@ public class MonsterBase : MonoBehaviour
     protected float hp = 30.0f;
 
     /// <summary>
+    /// 어택 베이스
+    /// </summary>
+    //AttackBase attackBase;
+
+    /// <summary>
     /// 몬스터 체력 프로퍼티
     /// </summary>
     public float HP
@@ -41,16 +46,18 @@ public class MonsterBase : MonoBehaviour
             if(hp != value)
             {
                 hp = value;
-                if(hp < 0)
+                if(hp < 1)
                 {
                     hp = 0;                     // 몬스터의 hp가 0이 된다면
                     monsterDieCount++;          // 죽은 몬스터의 숫자를 증가시키고
                     Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
                     //IncrementMonsterDieCount();
                     onDie?.Invoke();            // 몬스터가 죽었다고 델리게이트로 알림(공격순위 리스트에서 빼기 위해)
+                    //attackBase.attackList.Remove(this);
 
                     TurnEndProcess();
                     Destroy(gameObject);        // 게임 오브젝트 파괴
+                    Debug.Log("사망");
                 }
             }
         }
@@ -101,6 +108,8 @@ public class MonsterBase : MonoBehaviour
         }
 
         turnManager = FindAnyObjectByType<TurnManager>();
+
+        //attackBase = FindAnyObjectByType<AttackBase>();
     }
 
     /// <summary>

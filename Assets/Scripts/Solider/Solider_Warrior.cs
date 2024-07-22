@@ -8,5 +8,6 @@ public class Solider_Warrior : AttackBase
     {
         damage = 20.0f;     // 강화해서 50% 증가하면 30되게
         attackSpeed = 1.5f;
+        base.Start();
     }
 }
