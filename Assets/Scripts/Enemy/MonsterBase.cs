@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,9 +41,29 @@ public class MonsterBase : MonoBehaviour
             if(hp != value)
             {
                 hp = value;
+                if(hp < 0)
+                {
+                    hp = 0;                     // 몬스터의 hp가 0이 된다면
+                    monsterDieCount++;          // 죽은 몬스터의 숫자를 증가시키고
+                    Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
+                    //IncrementMonsterDieCount();
+
+                    TurnEndProcess();
+                    Destroy(gameObject);        // 게임 오브젝트 파괴
+                }
             }
         }
-    } 
+    }
+
+    /// <summary>
+    /// 죽은 몬스터의 숫자
+    /// </summary>
+    static int monsterDieCount = 0;
+
+    /// <summary>
+    /// 턴 종료 프로세스를 실행시키라는 델리게이트
+    /// </summary>
+    //public Action onTurnEndProcess;
 
     /// <summary>
     /// 웨이포인트에 도착하면 대기하는 시간
@@ -53,6 +74,11 @@ public class MonsterBase : MonoBehaviour
     /// 웨이포인트의 개수
     /// </summary>
     int waypointCount;
+
+    /// <summary>
+    /// 턴 매니저
+    /// </summary>
+    TurnManager turnManager;
 
     protected virtual void Start()
     {
@@ -72,6 +98,8 @@ public class MonsterBase : MonoBehaviour
         {
             StartCoroutine(MoveToNextWaypoint());
         }
+
+        turnManager = FindAnyObjectByType<TurnManager>();
     }
 
     /// <summary>
@@ -103,7 +131,38 @@ public class MonsterBase : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
 
-        // 모든 웨이포인트를 순회한 후, 게임 오브젝트를 파괴
-        Destroy(gameObject);
+        // 여기부터는 모든 웨이포인트를 순회했음
+
+        monsterDieCount++;          // 죽은 몬스터의 숫자 증가
+        Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
+        //IncrementMonsterDieCount();
+
+        TurnEndProcess();           // 턴을 종료시켜야 하는지 확인
+        Destroy(gameObject);        // 게임 오브젝트 파괴
+
+
+        // 이후에 성의 체력을 감소 시키는 부분 필요
     }
+
+    /// <summary>
+    /// 턴을 종료시켜야 하는지 확인하는 함수
+    /// </summary>
+    void TurnEndProcess()
+    {
+        if (monsterDieCount == enemySpawner.maxMonsterCount)     // 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
+        {
+            monsterDieCount = 0;                                // 죽은 몬스터의 숫자 초기화
+            //onTurnEndProcess?.Invoke();                         // 턴 종료 프로세스 실행
+            turnManager.OnTurnEnd2();
+        }
+    }
+
+    /*/// <summary>
+    /// 죽은 몬스터의 숫자를 증가시키는 함수
+    /// </summary>
+    protected virtual void IncrementMonsterDieCount()
+    {
+        monsterDieCount++;
+        Debug.Log($"Monster died, total count : {monsterDieCount}");
+    }*/
 }

@@ -17,6 +17,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// 턴 매니저
+    /// </summary>
+    TurnManager turnManager;
+
     protected override void Awake()
     {
         base.Awake();
@@ -31,6 +36,9 @@ public class GameManager : Singleton<GameManager>
     {
         base.OnInitialize();
         player = FindAnyObjectByType<Player>();
+
+        turnManager = FindAnyObjectByType<TurnManager>();
+        turnManager.OnInitialize2();
     }
 
     /*/// <summary>

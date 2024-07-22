@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -43,7 +44,12 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// 생성된 몬스터의 숫자
     /// </summary>
-    int monsterCount;
+    int monsterCount = 0;
+
+    /// <summary>
+    /// 최대 몬스터 숫자
+    /// </summary>
+    public int maxMonsterCount = 10;
 
     /// <summary>
     /// 턴 매니저
@@ -91,6 +97,8 @@ public class EnemySpawner : MonoBehaviour
     {
         monsterRepository = GameObject.Find("MonsterRepository");
         turnManager = FindAnyObjectByType<TurnManager>();
+
+        turnManager.onTurnStart += OnTurnStartFC;
     }
 
     /// <summary>
@@ -278,103 +286,31 @@ public class EnemySpawner : MonoBehaviour
                 }
                 break;
         }
+    }
 
-        /*if (turnManager.turnNumber == 1)
-        {
-            Debug.Log("1턴 쥐 몬스터 소환");
-        }
-        else if(turnManager.turnNumber == 2)
-        {
-            Debug.Log("2턴 쥐 몬스터 소환");
-        }
-        else if(turnManager.turnNumber == 3)
-        {
-            Debug.Log("3턴 거미 몬스터 소환");
-        }
-        else if(turnManager.turnNumber == 4)
-        {
-            Debug.Log("4턴 거미 몬스터 소환");
-        }
-        else if(turnManager.turnNumber == 5)
-        {
-            Debug.Log("5턴 유령 몬스터 소환");
-        }
-        else if(turnManager.turnNumber == 6)
-        {
-            Debug.Log("6턴 유령 몬스터 소환");
-        }
-        else if( turnManager.turnNumber == 7)
-        {
-            Debug.Log("7턴 쥐 반, 거미 반 소환");
-        }
-        else if(turnManager.turnNumber== 8)
-        {
-            Debug.Log("8턴 쥐 반, 유령 반 소환");
-        }
-        else if (turnManager.turnNumber== 9)
-        {
-            Debug.Log("9턴 거미 반, 유령 반 소환");
-        }
-        else if(turnManager.turnNumber == 10)
-        {
-            Debug.Log("10턴 사이클롭스 몬스터 소환");
-        }
-        if (turnManager.turnNumber == 11)
-        {
-            Debug.Log("11턴 강화 쥐 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 12)
-        {
-            Debug.Log("12턴 강화 쥐 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 13)
-        {
-            Debug.Log("13턴 강화 거미 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 14)
-        {
-            Debug.Log("14턴 강화 거미 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 15)
-        {
-            Debug.Log("15턴 강화 유령 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 16)
-        {
-            Debug.Log("16턴 강화 유령 몬스터 소환");
-        }
-        else if (turnManager.turnNumber == 17)
-        {
-            Debug.Log("17턴 강화 쥐 반, 강화 거미 반 소환");
-        }
-        else if (turnManager.turnNumber == 18)
-        {
-            Debug.Log("18턴 강화 쥐 반, 강화 유령 반 소환");
-        }
-        else if (turnManager.turnNumber == 19)
-        {
-            Debug.Log("19턴 강화 거미 반, 강화 유령 반 소환");
-        }
-        else if(turnManager.turnNumber == 20)
-        {
-            Debug.Log("20턴 리치 몬스터 소환");
-        }*/
+    /// <summary>
+    /// 턴이 시작되었을 때 코루틴을 시작시키는 함수
+    /// </summary>
+    /// <param name="_"></param>
+    private void OnTurnStartFC(int _)
+    {
+        StartCoroutine(SpawnerEnemyCoroutine(3.0f));
     }
 
     /// <summary>
     /// 몬스터를 스폰시키는 코루틴
     /// </summary>
-    /// <param name="delay"></param>
+    /// <param name="delay">턴 시작 후 몬스터가 스폰될 때까지 대기하는 시간</param>
     /// <returns></returns>
     IEnumerator SpawnerEnemyCoroutine(float delay)
     {
-        //yield return new WaitForSeconds(1.0f);          // 1초 기다리고(몬스터마다 달라야 하는데?)
-        while (monsterCount < 10)                       // 10번 실행
+        yield return new WaitForSeconds(delay);             // delay 만큼 기다리고
+        while (monsterCount < maxMonsterCount)              // 10번 실행
         {
-            SpawnerEnemy();                             // 몬스터 스폰
-            yield return new WaitForSeconds(spawnDelay);     // delay 만큼 기다리고
+            SpawnerEnemy();                                 // 몬스터 스폰
+            yield return new WaitForSeconds(spawnDelay);    // delay 만큼 기다리고
         }
-        monsterCount = 0;
+        monsterCount = 0;                                   // 몬스터를 전부 생성한 후 초기화
     }
 
 #if UNITY_EDITOR

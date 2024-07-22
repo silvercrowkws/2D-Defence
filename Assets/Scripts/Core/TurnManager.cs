@@ -59,8 +59,10 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
 
         turnState = TurnProcessState.Idle;      // 턴 진행 상태 초기화
         isTurnEnable = true;                    // 턴 켜기
+
+        Debug.Log("턴 시작 준비 완료");
         
-        OnTurnStart();                          // 턴 시작
+        //OnTurnStart();                          // 턴 시작
     }
 
     /// <summary>
@@ -93,6 +95,14 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
             isEndProcess = false;   // 종료 처리가 끝났다고 표시
             OnTurnStart();          // 다음 턴 시작
         }
+    }
+
+    /// <summary>
+    /// OnTurnStart를 사용하기 위한 public 함수
+    /// </summary>
+    public void OnTurnStart2()
+    {
+        OnTurnStart();
     }
 
     /// <summary>

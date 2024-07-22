@@ -16,8 +16,8 @@ public class Test_03_Turn : TestBase
 
     protected override void OnTest1(InputAction.CallbackContext context)
     {
-        Debug.Log("첫 턴 시작");
-        turnManager.OnInitialize2();
+        //Debug.Log("첫 턴 시작");
+        turnManager.OnTurnStart2();
     }
 
     protected override void OnTest2(InputAction.CallbackContext context)
