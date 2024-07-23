@@ -7,7 +7,7 @@ public class Solider_Wizard : AttackBase
     protected override void Start()
     {
         damage = 50.0f;     // 강화해서 50% 증가하면 75되게
-        attackSpeed = 3.0f;
+        attackSpeed = 2.0f;
         base.Start();
     }
 }
