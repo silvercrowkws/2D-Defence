@@ -36,6 +36,11 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     public Action<int> onTurnStart;
 
     /// <summary>
+    /// OnInitialize2가 실행되었음을 알리는 델리게이트
+    /// </summary>
+    public Action onInitialize2Start;
+
+    /// <summary>
     /// 턴이 끝났음을 알리는 델리게이트
     /// </summary>
     public Action onTurnEnd;
@@ -61,9 +66,11 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
         isTurnEnable = true;                    // 턴 켜기
 
         Debug.Log("턴 시작 준비 완료");
-        
+
+        onInitialize2Start?.Invoke();
         //OnTurnStart();                          // 턴 시작
     }
+
 
     /// <summary>
     /// 턴 시작 처리용 함수
