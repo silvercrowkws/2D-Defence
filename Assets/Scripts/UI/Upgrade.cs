@@ -18,11 +18,16 @@ public class Upgrade : MonoBehaviour
     Button noButton;
 
     /// <summary>
+    /// 파괴 버튼
+    /// </summary>
+    Button destroyButton;
+
+    /// <summary>
     /// Upgrade? 텍스트
     /// </summary>
     TextMeshProUGUI upgradeText;
 
-    /// <summary>
+    /*/// <summary>
     /// Yes 버튼의 이미지
     /// </summary>
     Image yesButtonImage;
@@ -44,13 +49,16 @@ public class Upgrade : MonoBehaviour
 
     // 색상
     const float fadeColor = 0.0f;
-    const float appearColor = 1.0f;
-
+    const float appearColor = 1.0f;*/
 
     /// <summary>
     /// 플레이어
     /// </summary>
     Player player;
+
+    Vector3 screenPosition;
+
+    public Action onDestroyButton;
 
     private void Awake()
     {
@@ -71,6 +79,10 @@ public class Upgrade : MonoBehaviour
         //noButton.gameObject.SetActive(false);               // 처음엔 게임 오브젝트 안보이게 만들기
 
         child = transform.GetChild(2);
+        destroyButton = child.GetComponent<Button>();
+        destroyButton.onClick.AddListener(DestroyFC);
+
+        child = transform.GetChild(3);
         upgradeText = child.GetComponent <TextMeshProUGUI>();
 
         SetActiveFalse();
@@ -96,7 +108,7 @@ public class Upgrade : MonoBehaviour
     private void UpgradeButtonPosition(Vector3Int cellPosition)
     {
         // 월드 좌표를 스크린 좌표로 변환
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(cellPosition);
+        screenPosition = Camera.main.WorldToScreenPoint(cellPosition);
 
         // 스크린 좌표를 RectTransform의 로컬 좌표로 변환
         RectTransform rectTransform = GetComponent<RectTransform>();
@@ -157,12 +169,23 @@ public class Upgrade : MonoBehaviour
     }
 
     /// <summary>
+    /// 설치된 solider를 파괴하는 함수
+    /// </summary>
+    private void DestroyFC()
+    {
+        SetActiveFalse();
+        player.boardClickAble = true;
+        onDestroyButton?.Invoke();
+    }
+
+    /// <summary>
     /// 버튼들을 보이게 만드는 함수
     /// </summary>
     void SetActiveTrue()
     {
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);
+        destroyButton.gameObject.SetActive(true);
         upgradeText.gameObject.SetActive(true);
     }
 
@@ -173,6 +196,7 @@ public class Upgrade : MonoBehaviour
     {
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
+        destroyButton.gameObject.SetActive(false);
         upgradeText.gameObject.SetActive(false);
     }
 }

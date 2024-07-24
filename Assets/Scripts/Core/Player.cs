@@ -105,7 +105,14 @@ public class Player : MonoBehaviour
     /// </summary>
     Vector3Int cellPosition;
 
-    
+    /// <summary>
+    /// Upgrade 클래스
+    /// </summary>
+    Upgrade upgrade;
+
+    // 설치된 솔저 오브젝트 Dictionary
+    private Dictionary<Vector3Int, GameObject> soliderObjects = new Dictionary<Vector3Int, GameObject>();
+
 
     private void Awake()
     {
@@ -128,6 +135,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         followMouse = FindAnyObjectByType<FollowMouse>();
+        upgrade = FindAnyObjectByType<Upgrade>();
+        upgrade.onDestroyButton += SoliderDestroy;
     }
 
     /// <summary>
@@ -272,25 +281,32 @@ public class Player : MonoBehaviour
 
         Vector3 centerPosition = new Vector3(0.5f, 0.5f, 0);        // solider의 중앙 위치를 맞추기 위해
 
+        GameObject createdObject = null;
+
         if (followMouse.soliderImage.sprite == followMouse.soliders[0])             // 바바리안을 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, barbarianTile);
-            Instantiate(collider_2_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject = Instantiate(collider_2_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("바바리안 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[1])        // 전사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, warriorTile);
-            Instantiate(collider_3_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject = Instantiate(collider_3_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("전사 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[2])        // 마법사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, wizardTile);
-            Instantiate(collider_4_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject = Instantiate(collider_4_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             Debug.Log("마법사 타일 설치");
 
             // soliderPosition 자리에 soliderTilemap.CellToWorld(soliderPosition)게 맞나?
+        }
+
+        if (createdObject != null)
+        {
+            soliderObjects[soliderPosition] = createdObject;  // Dictionary에 오브젝트 추가
         }
 
         followMouse.SetFollowImageColorDisable();
@@ -301,6 +317,22 @@ public class Player : MonoBehaviour
     /// </summary>
     private void SoliderUpgrade()
     {
+
+    }
+
+    /// <summary>
+    /// 설치된 솔저를 파괴하는 함수
+    /// </summary>
+    private void SoliderDestroy()
+    {
+        soliderTilemap.SetTile(cellPosition, null);
+
+        // Dictionary에서 해당 위치의 오브젝트 찾기
+        if (soliderObjects.TryGetValue(cellPosition, out GameObject soliderToDestroy))
+        {
+            Destroy(soliderToDestroy); // 오브젝트 파괴
+            soliderObjects.Remove(cellPosition); // Dictionary에서 제거
+        }
 
     }
 
