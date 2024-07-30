@@ -362,64 +362,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &146934893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146934894}
-  - component: {fileID: 146934895}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &146934894
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146934893}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &146934895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146934893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41e739f2cd448c44a5003f217d6ada9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castleTilemap: {fileID: 313314896}
-  soliderTilemap: {fileID: 1871080545}
-  groundTilemap: {fileID: 622943503}
-  enemyTilemap: {fileID: 526314851}
-  barbarianTile: {fileID: 11400000, guid: 677a3a827dfb125488e00dd0f499df66, type: 2}
-  warriorTile: {fileID: 11400000, guid: b083a8214694e3d458683956a19b58fa, type: 2}
-  wizardTile: {fileID: 11400000, guid: b0db2d6d6522a0a4b927673f3996f308, type: 2}
-  collider_2_Tile: {fileID: 6334863619464253367, guid: 3c9889e537675384689982701f48717b, type: 3}
-  collider_3_Tile: {fileID: 3744430210679275093, guid: e20e485e3f3511f4aabac984f6a481ef, type: 3}
-  collider_4_Tile: {fileID: 7549999061267216111, guid: 96574b355b116f144953345af353ee0e, type: 3}
-  enemyTile: {fileID: 11400000, guid: a16814858f166c343bd6a977dc0c17b0, type: 2}
-  setAble: 0
-  upgradeAble: 0
-  boardClickAble: 0
 --- !u!1 &313314893
 GameObject:
   m_ObjectHideFlags: 0
@@ -6460,6 +6402,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcad4376c1a62ba43956293a59da2e9a, type: 3}
+--- !u!1001 &3946593347220290697
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043898667443338135, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407163303061509459, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: enemyTilemap
+      value: 
+      objectReference: {fileID: 526314851}
+    - target: {fileID: 7407163303061509459, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: castleTilemap
+      value: 
+      objectReference: {fileID: 313314896}
+    - target: {fileID: 7407163303061509459, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: groundTilemap
+      value: 
+      objectReference: {fileID: 622943503}
+    - target: {fileID: 7407163303061509459, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: soliderTilemap
+      value: 
+      objectReference: {fileID: 1871080545}
+    - target: {fileID: 8750630933614828020, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d28ea33f5294d6e49a5e64ad6149b209, type: 3}
 --- !u!1001 &5981824325969343872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6582,7 +6597,7 @@ SceneRoots:
   - {fileID: 1546643803}
   - {fileID: 771391285}
   - {fileID: 125383996}
-  - {fileID: 146934894}
+  - {fileID: 3946593347220290697}
   - {fileID: 3569362663182852861}
   - {fileID: 8704428856126559929}
   - {fileID: 5981824325969343872}
