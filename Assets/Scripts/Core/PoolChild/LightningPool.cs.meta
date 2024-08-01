@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2cbdcae87430a454aa7adbe1e191b825
+guid: 0bb490129a435e54298d73c90524ef2e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - Lightning: {fileID: 9016600599639315523, guid: f1d20f46de6e7064887a09b174e82d41, type: 3}
+  - originalPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

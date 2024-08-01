@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackList: []
+  Lightning: {fileID: 9016600599639315523, guid: f1d20f46de6e7064887a09b174e82d41, type: 3}
 --- !u!50 &-561380452644412782
 Rigidbody2D:
   serializedVersion: 4

@@ -21,7 +21,7 @@ TagManager:
   - Door
   - Trail
   - AttackRange
-  - 
+  - Effect
   - 
   - 
   - 
@@ -64,4 +64,7 @@ TagManager:
     locked: 0
   - name: Soilder
     uniqueID: 1487491793
+    locked: 0
+  - name: Effect
+    uniqueID: 2221445297
     locked: 0

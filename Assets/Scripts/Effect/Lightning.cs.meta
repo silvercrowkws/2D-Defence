@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 2cbdcae87430a454aa7adbe1e191b825
+guid: 56be739447085074b812e3837bec7b37
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - Lightning: {fileID: 9016600599639315523, guid: f1d20f46de6e7064887a09b174e82d41, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

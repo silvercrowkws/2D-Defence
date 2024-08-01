@@ -287,18 +287,24 @@ public class Player : MonoBehaviour
         {
             soliderTilemap.SetTile(soliderPosition, barbarianTile);
             createdObject = Instantiate(collider_2_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject.name = "Barbarian";       // 이름 변경
+            createdObject.transform.parent = this.gameObject.transform;     // 부모 설정
             Debug.Log("바바리안 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[1])        // 전사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, warriorTile);
             createdObject = Instantiate(collider_3_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject.name = "Warrior";
+            createdObject.transform.parent = this.gameObject.transform;
             Debug.Log("전사 타일 설치");
         }
         else if(followMouse.soliderImage.sprite == followMouse.soliders[2])        // 마법사를 클릭했었다
         {
             soliderTilemap.SetTile(soliderPosition, wizardTile);
             createdObject = Instantiate(collider_4_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+            createdObject.name = "Wizard";
+            createdObject.transform.parent = this.gameObject.transform;
             Debug.Log("마법사 타일 설치");
 
             // soliderPosition 자리에 soliderTilemap.CellToWorld(soliderPosition)게 맞나?

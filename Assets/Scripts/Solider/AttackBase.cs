@@ -22,12 +22,21 @@ public class AttackBase : MonoBehaviour
     /// </summary>
     protected float attackSpeed = 1.0f;
 
-    //MonsterBase monster;
+    //MonsterBase monsterBase;
 
     /// <summary>
     /// 누적 시간
     /// </summary>
     float elTime;
+
+    public GameObject Lightning;
+
+    Factory factory;
+
+    private void Awake()
+    {
+        factory = Factory.Instance;
+    }
 
     protected virtual void Start()
     {
@@ -39,16 +48,16 @@ public class AttackBase : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("적과 충돌");
-            MonsterBase monster = collision.gameObject.GetComponent<MonsterBase>();     // 충돌한 게임 오브젝트에서 MonsterBase를 가져옴
+            MonsterBase monsterBase = collision.gameObject.GetComponent<MonsterBase>();     // 충돌한 게임 오브젝트에서 MonsterBase를 가져옴
             
-            if (monster != null && !attackList.Contains(monster))       // 몬스터가 있고, 그 몬스터가 리스트에 포함되어 있지 않으면(중복된 몬스터가 리스트에 추가되는 것 방지)
+            if (monsterBase != null && !attackList.Contains(monsterBase))       // 몬스터가 있고, 그 몬스터가 리스트에 포함되어 있지 않으면(중복된 몬스터가 리스트에 추가되는 것 방지)
             {
-                monster.onDie = () =>
+                monsterBase.onDie = () =>
                 {
-                    attackList.Remove(monster);
+                    attackList.Remove(monsterBase);     // 죽으면 리스트에서 삭제
                 };
-                attackList.Add(monster);
-                //attackList.Insert(0, monster);      // 충돌한 적을 리스트의 0번으로
+                attackList.Add(monsterBase);
+                //attackList.Insert(0, monsterBase);      // 충돌한 적을 리스트의 0번으로
             }
         }
     }
@@ -108,6 +117,9 @@ public class AttackBase : MonoBehaviour
                 // 만약 본인이 마법사라면 리스트에 있는 모든 몬스터 공격
                 for (int i = 0; i < attackList.Count; i++)      // 공격하는 순간에도 리스트의 변형이 일어나기 때문에 foreach문 안됨
                 {
+                    //Instantiate(Lightning, attackList[i].transform.position, Quaternion.identity);
+                    factory.GetLightning(attackList[i].transform.position);   // 팩토리를 이용해 번개 생성
+
                     attackList[i].HP -= damage;
                 }
             }

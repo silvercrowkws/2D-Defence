@@ -1,11 +1,63 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 게임상태
+/// </summary>
+public enum GameState
+{
+    GameReady,
+    GameStart,
+    GameOver
+}
+
 public class GameManager : Singleton<GameManager>
 {
+    /// <summary>
+    /// 현재 게임상태
+    /// </summary>
+    GameState gameState = GameState.GameReady;
+
+    /// <summary>
+    /// 현재 게임상태 변경시 알리는 프로퍼티
+    /// </summary>
+    public GameState GameState
+    {
+        get => gameState;
+        set
+        {
+            if (gameState != value)
+            {
+                gameState = value;
+                switch (gameState)
+                {
+                    case GameState.GameReady:
+                        Debug.Log("게임레디");
+                        onGameReady?.Invoke();
+                        break;
+                    case GameState.GameStart:
+                        Debug.Log("게임스타트");
+                        onGameStart?.Invoke();
+                        break;
+                    case GameState.GameOver:
+                        Debug.Log("게임오버");
+                        onGameOver?.Invoke();
+                        break;
+                }
+            }
+        }
+    }
+
+
+    // 게임상태 델리게이트
+    public Action onGameReady;
+    public Action onGameStart;
+    public Action onGameOver;
+
     Player player;
     public Player Player
     {
@@ -22,10 +74,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     TurnManager turnManager;
 
-    protected override void Awake()
+    /*protected override void Awake()
     {
         base.Awake();
-    }
+    }*/
 
     private void Start()
     {
