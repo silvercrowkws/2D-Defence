@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7055136147069668708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.5, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   ghost_2Prefab: {fileID: 9130548133973439277, guid: e95b21aee4ed6db43897df6b6e8fe2e4, type: 3}
   spider_1Prefab: {fileID: 6393666078710067507, guid: b9173f7c048509449ab1ab1fbe453734, type: 3}
   spider_2Prefab: {fileID: 8505244320000190379, guid: dfc98096019d30749b892ad6ef30d2ad, type: 3}
-  lichPrefab: {fileID: 1536062779789419961, guid: f16704973af00e94fb77a58c844fb1aa, type: 3}
+  lichPrefab: {fileID: 5233434739614228972, guid: f16704973af00e94fb77a58c844fb1aa, type: 3}
 --- !u!1 &7777697355278765004
 GameObject:
   m_ObjectHideFlags: 0
