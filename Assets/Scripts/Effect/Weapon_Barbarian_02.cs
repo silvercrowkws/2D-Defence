@@ -7,7 +7,7 @@ public class Weapon_Barbarian_02 : RecycleObject
     /// <summary>
     /// 이 이펙트의 수명
     /// </summary>
-    public float lifeTime = 3.0f;
+    public float lifeTime = 0.5f;
 
     protected override void OnEnable()
     {
