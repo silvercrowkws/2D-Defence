@@ -112,21 +112,31 @@ public class AttackBase : MonoBehaviour
 
         if(attackList[0].HP > 0)    // attackList의 0번 HP가 0보다 크면
         {
-            if (transform.CompareTag("Wizard"))
+            if (transform.CompareTag("Wizard"))             // 마법사의 경우
             {
                 // 만약 본인이 마법사라면 리스트에 있는 모든 몬스터 공격
                 for (int i = 0; i < attackList.Count; i++)      // 공격하는 순간에도 리스트의 변형이 일어나기 때문에 foreach문 안됨
                 {
                     //Instantiate(Lightning, attackList[i].transform.position, Quaternion.identity);
                     factory.GetLightning(attackList[i].transform.position);   // 팩토리를 이용해 번개 생성
+                    //Debug.Log($"{i}번째 리스트의 위치 : {attackList[i].transform.position}");
 
                     attackList[i].HP -= damage;
                 }
             }
-            else
+            else if(transform.CompareTag("Warrior"))        // 전사의 경우
             {
-                // 마법사가 아닌 다른 solider면
+                factory.GetWeapon_Warrior_01(attackList[0].transform.position, 180.0f);     // 팩토리를 이용해 검 생성
+                //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
+
                 attackList[0].HP -= damage;     // damage 만큼 HP 깍음
+            }
+            else if (transform.CompareTag("Barbarian"))     // 바바리안의 경우
+            {
+                factory.GetWeapon_Barbarian_01(attackList[0].transform.position, 180.0f);   // 팩토리를 이용해 도끼 생성
+                //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
+
+                attackList[0].HP -= damage;
             }
             //Debug.Log($"{attackList[0].name} 공격");        // HP 가 0이되는 순간 onDie가 발동되서 리스트에서 제거되기 때문에 오류 있음
             //Debug.Log($"{attackList[0].name}의 남은 HP : {attackList[0].HP}");

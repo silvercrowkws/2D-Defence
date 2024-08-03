@@ -1,0 +1,681 @@
+fileFormatVersion: 2
+guid: 365f32c0cb30d7745a6ca9274156e4d2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2375.8333
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f59a85c9bc2c7d44bcd646e6254b3e9
+      internalID: -1836897119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_1
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 2375.8333
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 738076b91184039499fbea2233ad311b
+      internalID: -1529830852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_2
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 2375.8333
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0017b8289201424bb2b0771df97b542
+      internalID: -65913815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_3
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 2375.8333
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60eaa0a2be4e5a64e94eb4e85679a2d2
+      internalID: -1358298730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1900.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a92903ef8b7f0e743a2d2c89fb385a82
+      internalID: -1857421326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_5
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1900.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2faadec3710fcb54e9b561ceb30b2e2b
+      internalID: 1725831360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_6
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 1900.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2afcbc5b8688db468db66a61b0c2b67
+      internalID: -188146787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_7
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 1900.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbdf7bc677b6aee49a1bf864704e4a1b
+      internalID: 1687687577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1425.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84dd4b6af8035f4b8ff64578618e30d
+      internalID: 1620298596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_9
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1425.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84a1b106ab7b66428c03a4eb22a32ac
+      internalID: 1799330843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_10
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 1425.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5f38fd2a3a88f408b55acc1e85919f
+      internalID: 600330233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_11
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 1425.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f30d27e76497c49ba3a52f61d2f575
+      internalID: 1448473694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 950.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9912e497f96890d40b7f93e0d4fa85dc
+      internalID: -1467539593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_13
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 950.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d891233996ca0742ba5606a64e96019
+      internalID: 1760930526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_14
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 950.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53456510598739e4aa6730d0110b7369
+      internalID: -169069577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_15
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 950.8334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c8e9d1751a90ba4c9eb38462bc62d59
+      internalID: 1676026511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 475.83334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba72ebd3777f09419768bf240c0fa28
+      internalID: 422843518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_17
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 475.83334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceac76c355ca8c54ca792f9a87f52bf0
+      internalID: -161132643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BHit_0
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 475.83334
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee5ceae65ddad740b0033f6ff4db7ed
+      internalID: -638019558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BHit_1
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 476
+        width: 480
+        height: 475
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8259d847cd89e142b3f15c2b101413e
+      internalID: 1395077720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BHit_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 402
+        height: 381
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aace1bd3a204a1f4ba2a79c163575c8c
+      internalID: -1348324399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BHit_3
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 11
+        width: 416
+        height: 369
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b28877f112c9d94699e05b7b450825e
+      internalID: -1944657291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BHit_4
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 17
+        width: 423
+        height: 367
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09f7b1c13ab820e49bce8a68c81ff527
+      internalID: 52524570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Long Gone Days - Hit 3_23
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 0.8333435
+        width: 483.25
+        height: 475.16666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db909e65fd377c45862bcb42c1db1b4
+      internalID: -1657189921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BHit_0: -638019558
+      BHit_1: 1395077720
+      BHit_2: -1348324399
+      BHit_3: -1944657291
+      BHit_4: 52524570
+      PC Computer - Long Gone Days - Hit 3_0: -1836897119
+      PC Computer - Long Gone Days - Hit 3_1: -1529830852
+      PC Computer - Long Gone Days - Hit 3_10: 600330233
+      PC Computer - Long Gone Days - Hit 3_11: 1448473694
+      PC Computer - Long Gone Days - Hit 3_12: -1467539593
+      PC Computer - Long Gone Days - Hit 3_13: 1760930526
+      PC Computer - Long Gone Days - Hit 3_14: -169069577
+      PC Computer - Long Gone Days - Hit 3_15: 1676026511
+      PC Computer - Long Gone Days - Hit 3_16: 422843518
+      PC Computer - Long Gone Days - Hit 3_17: -161132643
+      PC Computer - Long Gone Days - Hit 3_2: -65913815
+      PC Computer - Long Gone Days - Hit 3_23: -1657189921
+      PC Computer - Long Gone Days - Hit 3_3: -1358298730
+      PC Computer - Long Gone Days - Hit 3_4: -1857421326
+      PC Computer - Long Gone Days - Hit 3_5: 1725831360
+      PC Computer - Long Gone Days - Hit 3_6: -188146787
+      PC Computer - Long Gone Days - Hit 3_7: 1687687577
+      PC Computer - Long Gone Days - Hit 3_8: 1620298596
+      PC Computer - Long Gone Days - Hit 3_9: 1799330843
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
