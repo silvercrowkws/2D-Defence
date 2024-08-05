@@ -515,6 +515,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_Barbarian_01
       objectReference: {fileID: 0}
+    - target: {fileID: 6411603604202047243, guid: 7c10c451f26dca64d868dae261eef77b, type: 3}
+      propertyPath: m_Size.x
+      value: 4.231341
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411603604202047243, guid: 7c10c451f26dca64d868dae261eef77b, type: 3}
+      propertyPath: m_Size.y
+      value: 3.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411603604202047243, guid: 7c10c451f26dca64d868dae261eef77b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411603604202047243, guid: 7c10c451f26dca64d868dae261eef77b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -29,8 +29,11 @@ public class AttackBase : MonoBehaviour
     /// </summary>
     float elTime;
 
-    public GameObject Lightning;
+    //public GameObject Lightning;
 
+    /// <summary>
+    /// 팩토리
+    /// </summary>
     Factory factory;
 
     private void Awake()
@@ -72,7 +75,7 @@ public class AttackBase : MonoBehaviour
                 attackList.Remove(monster);
             };
 
-            if (elTime > attackSpeed)       // 누적 시간이 공격 속도보다 크면
+            if (elTime > attackSpeed && attackList.Count > 0)       // 누적 시간이 공격 속도보다 크면
             {
                 AttackProcess();            // 공격 함수 실행
             }
@@ -110,7 +113,7 @@ public class AttackBase : MonoBehaviour
     {
         elTime = 0;                 // 공격 함수 발동 시 누적 시간 초기화
 
-        if(attackList[0].HP > 0)    // attackList의 0번 HP가 0보다 크면
+        if(attackList.Count > 0 && attackList[0].HP > 0)    // attackList의 0번 HP가 0보다 크면
         {
             if (transform.CompareTag("Wizard"))             // 마법사의 경우
             {
