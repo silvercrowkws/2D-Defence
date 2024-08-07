@@ -110,8 +110,15 @@ public class Player : MonoBehaviour
     /// </summary>
     Upgrade upgrade;
 
-    // 설치된 솔저 오브젝트 Dictionary
-    private Dictionary<Vector3Int, GameObject> soliderObjects = new Dictionary<Vector3Int, GameObject>();
+    /// <summary>
+    /// 설치된 솔저 오브젝트 Dictionary(키 : 위치, 값 : 오브젝트)
+    /// </summary>
+    public Dictionary<Vector3Int, GameObject> soliderObjectDictionary = new Dictionary<Vector3Int, GameObject>();
+
+    /// <summary>
+    /// 설치된 오브젝트 솔저 Dictionary(키 : 오브젝트, 값 : 위치)
+    /// </summary>
+    public Dictionary<GameObject, Vector3Int> objectSoliderDictionary = new Dictionary<GameObject, Vector3Int>();
 
 
     private void Awake()
@@ -312,7 +319,8 @@ public class Player : MonoBehaviour
 
         if (createdObject != null)
         {
-            soliderObjects[soliderPosition] = createdObject;  // Dictionary에 오브젝트 추가
+            soliderObjectDictionary[soliderPosition] = createdObject;   // Dictionary에 오브젝트 추가
+            objectSoliderDictionary[createdObject] = soliderPosition;   // Dictionary에 오브젝트 추가
         }
 
         followMouse.SetFollowImageColorDisable();
@@ -334,12 +342,12 @@ public class Player : MonoBehaviour
         soliderTilemap.SetTile(cellPosition, null);
 
         // Dictionary에서 해당 위치의 오브젝트 찾기
-        if (soliderObjects.TryGetValue(cellPosition, out GameObject soliderToDestroy))
+        if (soliderObjectDictionary.TryGetValue(cellPosition, out GameObject soliderToDestroy))     // cellPosition에 있는 게임 오브젝트를 soliderToDestroy라고 정하기
         {
             Destroy(soliderToDestroy); // 오브젝트 파괴
-            soliderObjects.Remove(cellPosition); // Dictionary에서 제거
+            soliderObjectDictionary.Remove(cellPosition);       // Dictionary에서 제거
+            objectSoliderDictionary.Remove(soliderToDestroy);   // Dictionary에서 제거
         }
-
     }
 
 
