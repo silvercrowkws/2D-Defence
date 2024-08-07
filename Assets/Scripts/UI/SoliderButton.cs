@@ -22,6 +22,8 @@ public class SoliderButton : MonoBehaviour
     public Action onWarriorButtonClick;
     public Action onWizardButtonClick;
 
+    Player player;
+
     private void Awake()
     {
         buttons = GetComponentsInChildren<Button>();
@@ -33,6 +35,7 @@ public class SoliderButton : MonoBehaviour
     private void Start()
     {
         upgrade = FindAnyObjectByType<Upgrade>();
+        player = GameManager.Instance.Player;
     }
 
     /// <summary>
@@ -43,6 +46,7 @@ public class SoliderButton : MonoBehaviour
         Debug.Log($"바바리안 바튼 클릭");
         upgrade.SetActiveFalse();
         onBarbarianButtonClick?.Invoke();
+        player.boardClickAble = true;
     }
 
     /// <summary>
@@ -53,6 +57,7 @@ public class SoliderButton : MonoBehaviour
         Debug.Log($"전사 버튼 클릭");
         upgrade.SetActiveFalse();
         onWarriorButtonClick?.Invoke();
+        player.boardClickAble = true;
     }
 
     /// <summary>
@@ -63,5 +68,6 @@ public class SoliderButton : MonoBehaviour
         Debug.Log($"마법사 버튼 클릭");
         upgrade.SetActiveFalse();
         onWizardButtonClick?.Invoke();
+        player.boardClickAble = true;       // soldier를 클릭한 상태에서 UI 가 나타났을 때 이 버튼을 누르면 설치가 안되는 문제 해결용
     }
 }
