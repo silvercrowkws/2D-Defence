@@ -28,7 +28,7 @@ public class GhostMonster_1 : MonsterBase
     {
         moveSpeed = 3;
         waitTime = 0;
-        hp = 50.0f;
+        hp = 100.0f;
 
         ghostRenderer = GetComponent<Renderer>();
         ghostCollider = GetComponent<Collider2D>();

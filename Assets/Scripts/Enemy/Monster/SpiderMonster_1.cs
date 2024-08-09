@@ -16,13 +16,13 @@ public class SpiderMonster_1 : MonsterBase
     /// <summary>
     /// 공격을 멈추게 하는 시간
     /// </summary>
-    float stopTime = 2.0f;
+    float stopTime = 1.0f;
 
     protected override void Start()
     {
         moveSpeed = 4;
         waitTime = 0;
-        hp = 30.0f;
+        hp = 100.0f;
         base.Start();
     }
 
@@ -31,7 +31,7 @@ public class SpiderMonster_1 : MonsterBase
         // 충돌한 오브젝트의 태그가 바바리안 or 워리어 or 위자드 일 경우
         if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard"))
         {
-            if (UnityEngine.Random.value < 0.2f)        // 20% 의 확률로
+            if (UnityEngine.Random.value < 0.1f)        // 10% 의 확률로
             {
                 attackBase = collision.GetComponent<AttackBase>();      // 충돌한 대상에서 attackBase를 가져옴
                 attackBase.elTime = -100;       // 공격 못하도록 -100(elTime이 attackSpeed 보다 크면 공격하는 시스템)

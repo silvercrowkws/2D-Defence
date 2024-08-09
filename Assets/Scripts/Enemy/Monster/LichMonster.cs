@@ -8,7 +8,7 @@ public class LichMonster : MonsterBase
     {
         moveSpeed = 1.0f;
         waitTime = 0.5f;
-        hp = 200.0f;
+        hp = 300.0f;
         base.Start();
     }
     // 리치는 특수 능력 뭔가 하나 넣자
