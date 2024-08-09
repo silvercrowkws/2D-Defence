@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyclops
       objectReference: {fileID: 0}
+    - target: {fileID: 5680744765734716884, guid: 2aad59233630132429b59612b9fd2807, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6640397760356942998, guid: 2aad59233630132429b59612b9fd2807, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9184374

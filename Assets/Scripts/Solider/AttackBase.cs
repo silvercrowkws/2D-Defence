@@ -27,7 +27,7 @@ public class AttackBase : MonoBehaviour
     /// <summary>
     /// 누적 시간
     /// </summary>
-    float elTime;
+    public float elTime;
 
     //public GameObject Lightning;
 
@@ -36,9 +36,16 @@ public class AttackBase : MonoBehaviour
     /// </summary>
     Factory factory;
 
+    /// <summary>
+    /// 공격 못할 때 보여질 게임 오브젝트
+    /// </summary>
+    public GameObject spiderWeb;
+
     private void Awake()
     {
         factory = Factory.Instance;
+        spiderWeb = transform.GetChild(0).gameObject;
+        spiderWeb.SetActive(false);       // 게임 시작시에는 안보이게
     }
 
     protected virtual void Start()
@@ -69,10 +76,10 @@ public class AttackBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            MonsterBase monster = collision.gameObject.GetComponent<MonsterBase>();
-            monster.onDie = () =>
+            MonsterBase monsterBase = collision.gameObject.GetComponent<MonsterBase>();
+            monsterBase.onDie = () =>
             {
-                attackList.Remove(monster);
+                attackList.Remove(monsterBase);
             };
 
             if (elTime > attackSpeed && attackList.Count > 0)       // 누적 시간이 공격 속도보다 크면
@@ -86,10 +93,10 @@ public class AttackBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            MonsterBase monster = collision.gameObject.GetComponent<MonsterBase>();
-            if (monster != null && attackList.Contains(monster))        // 몬스터가 있고, 그 몬스터가 리스트에 포함되어 있으면
+            MonsterBase monsterBase = collision.gameObject.GetComponent<MonsterBase>();
+            if (monsterBase != null && attackList.Contains(monsterBase))        // 몬스터가 있고, 그 몬스터가 리스트에 포함되어 있으면
             {
-                attackList.Remove(monster);     // 리스트에서 제거
+                attackList.Remove(monsterBase);     // 리스트에서 제거
             }
         }
     }
@@ -144,6 +151,27 @@ public class AttackBase : MonoBehaviour
             //Debug.Log($"{attackList[0].name} 공격");        // HP 가 0이되는 순간 onDie가 발동되서 리스트에서 제거되기 때문에 오류 있음
             //Debug.Log($"{attackList[0].name}의 남은 HP : {attackList[0].HP}");
         }
+    }
+
+    /// <summary>
+    /// 상대가 stopTime초 동안 공격 못하게 하는 코루틴
+    /// </summary>
+    /// <param name="stopTime"></param>
+    /// <returns></returns>
+    public IEnumerator AttackStop(float stopTime)
+    {
+        yield return new WaitForSeconds(stopTime);      // stopTime 만큼 기다리고
+        spiderWeb.SetActive(false);                     // 거미줄 비활성화
+        elTime = 0;                                     // 누적 시간 정상화
+        Debug.Log("공격 재개");
+    }
+
+    /// <summary>
+    /// 다시 공격을 시작하는 코루틴
+    /// </summary>
+    public void OnAttackStart(float stopTime)
+    {
+        StartCoroutine(AttackStop(stopTime));
     }
 
     /*/// <summary>

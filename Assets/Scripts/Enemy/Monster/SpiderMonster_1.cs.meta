@@ -3,7 +3,8 @@ guid: 30f31b7d098ffbb4fa569a762761945d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spiderWeb: {fileID: 7234346229106680132, guid: 59c7474b952604a4b93e8c0cd42e6e19, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

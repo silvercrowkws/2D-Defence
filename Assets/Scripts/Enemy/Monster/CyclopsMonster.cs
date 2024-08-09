@@ -26,11 +26,6 @@ public class CyclopsMonster : MonsterBase
         laserRoot.SetActive(false);
 
         base.Start();
-
-        /*if (Random.value < 0.1f)
-        {
-            Debug.Log("10% 확률로 출력되는 메시지");
-        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
