@@ -33,6 +33,13 @@ public class FollowMouse : MonoBehaviour
     /// </summary>
     public bool soliderButtonOn = false;
 
+    /// <summary>
+    /// 공격 범위 UI들
+    /// </summary>
+    GameObject barbarianCircle;
+    GameObject warriorCircle;
+    GameObject wizardCircle;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -45,6 +52,18 @@ public class FollowMouse : MonoBehaviour
             imageColor.a = 0f;
             soliderImage.color = imageColor;
         }
+
+        Transform child = transform.GetChild(1);
+        barbarianCircle = child.gameObject;
+        barbarianCircle.gameObject.SetActive(false);
+
+        child = transform.GetChild(2);
+        warriorCircle = child.gameObject;
+        warriorCircle.gameObject.SetActive(false);
+
+        child = transform.GetChild(3);
+        wizardCircle = child.gameObject;
+        wizardCircle.gameObject.SetActive(false);
     }
 
     void Start()
@@ -74,6 +93,7 @@ public class FollowMouse : MonoBehaviour
     {
         SetFollowImageColor();
         soliderImage.sprite = soliders[0];
+        barbarianCircle.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -83,7 +103,7 @@ public class FollowMouse : MonoBehaviour
     {
         SetFollowImageColor();
         soliderImage.sprite = soliders[1];
-
+        warriorCircle.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -93,6 +113,7 @@ public class FollowMouse : MonoBehaviour
     {
         SetFollowImageColor();
         soliderImage.sprite = soliders[2];
+        wizardCircle.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -114,5 +135,20 @@ public class FollowMouse : MonoBehaviour
         imageColor.a = 0.0f;
         soliderImage.color = imageColor;
         soliderButtonOn = false;
+
+        if(barbarianCircle.gameObject.activeSelf)
+        {
+            barbarianCircle.gameObject.SetActive(false);
+        }
+
+        if(warriorCircle.gameObject.activeSelf)
+        {
+            warriorCircle.gameObject.SetActive(false);
+        }
+
+        if (wizardCircle.gameObject.activeSelf)
+        {
+            wizardCircle.gameObject.SetActive(false);
+        }
     }
 }
