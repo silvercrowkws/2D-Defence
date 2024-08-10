@@ -101,6 +101,16 @@ public class Player : MonoBehaviour
     public Action<Vector3Int> onCellPosition;
 
     /// <summary>
+    /// 각 solider를 클릭했을 때 공격 범위를 보이게 할 델리게이트
+    /// </summary>
+    public Action onSoliderCilck;
+
+    /// <summary>
+    /// solider 이외의 것을 클릭했을 때 공격 범위를 안보이게 할 델리게이트
+    /// </summary>
+    public Action onNonSoliderClick;
+
+    /// <summary>
     /// 클릭한 셀의 위치
     /// </summary>
     Vector3Int cellPosition;
@@ -193,12 +203,14 @@ public class Player : MonoBehaviour
                             Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
                             //Debug.Log($"tileWorldPosition : {tileWorldPosition}");
 
+                            onSoliderCilck?.Invoke();       // solider를 클릭했다고 델리게이트로 알림
+
                             if (clickedTile == barbarianTile)
                             {
                                 Debug.Log($"{clickedTile.name} 선택");
                                 upgradeAble = true;                     // 강화 가능 변수 on
 
-                                Debug.Log(tilemap.transform);
+                                //Debug.Log(tilemap.transform);
                                 // 이 위치를 델리게이트로 보내서 UI 관리하는 클래스에서 Ok, No 버튼의 위치를 조정하는 건데
                                 // UI 버튼 같은거 OK, NO 띄우고 OK 누르면 강화, No 누르면 취소
                             }
@@ -218,11 +230,14 @@ public class Player : MonoBehaviour
                         else if (tilemap == enemyTilemap)
                         {
                             Debug.Log("enemyTilemap 클릭");
+                            onNonSoliderClick?.Invoke();
                         }
 
                         // 타일이 castleTilemap인 경우
                         else if (tilemap == castleTilemap)
                         {
+                            onNonSoliderClick?.Invoke();
+
                             Debug.Log("castleTilemap 클릭");
                             if (followMouse.soliderButtonOn)            // 솔져 버튼이 눌러진 상태이면
                             {
@@ -240,12 +255,14 @@ public class Player : MonoBehaviour
                         // 타일이 groundTilemap인 경우
                         else if (tilemap == groundTilemap)
                         {
+                            onNonSoliderClick?.Invoke();
                             Debug.Log("groundTilemap 클릭");
                         }
 
                         // 타일을 못찾았을 경우
                         else
                         {
+                            onNonSoliderClick?.Invoke();
                             Debug.Log("못찾음");
                         }
                     }

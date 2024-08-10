@@ -41,16 +41,50 @@ public class AttackBase : MonoBehaviour
     /// </summary>
     public GameObject spiderWeb;
 
+    /// <summary>
+    /// 플레이어
+    /// </summary>
+    Player player;
+
+    /// <summary>
+    /// 스프라이트
+    /// </summary>
+    SpriteRenderer spriteRenderer;
+    
+    /// <summary>
+    /// 알파값을 조절하기 위한 컬러
+    /// </summary>
+    Color alphaColor;
+
+    Upgrade upgrade;
+
     private void Awake()
     {
         factory = Factory.Instance;
         spiderWeb = transform.GetChild(0).gameObject;
         spiderWeb.SetActive(false);       // 게임 시작시에는 안보이게
+        
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        alphaColor = spriteRenderer.color;
+        alphaColor.a = 0;
+        spriteRenderer.color = alphaColor;      // 처음엔 안보이게
     }
 
     protected virtual void Start()
     {
+        player = GameManager.Instance.Player;
+
         attackList = new List<MonsterBase>();
+
+        player.onSoliderCilck += onAlphaChange;
+        player.onNonSoliderClick += onAlphaChange2;
+
+        upgrade = FindAnyObjectByType<Upgrade>();
+
+        if (upgrade != null)
+        {
+            upgrade.onAlphZero += onAlphaChange2;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -172,6 +206,31 @@ public class AttackBase : MonoBehaviour
     public void OnAttackStart(float stopTime)
     {
         StartCoroutine(AttackStop(stopTime));
+    }
+
+    /// <summary>
+    /// 스프라이트 렌더러의 알파를 조절하는 함수
+    /// </summary>
+    private void onAlphaChange()
+    {
+        if (spriteRenderer != null)
+        {
+            alphaColor.a = 0.1f;
+            spriteRenderer.color = alphaColor;
+        }
+    }
+
+    /// <summary>
+    /// 스트라이트 렌더러의 알파를 안보이게 조절하는 함수
+    /// </summary>
+    private void onAlphaChange2()
+    {
+        //if (this.gameObject != null)
+        if (spriteRenderer != null)
+        {
+            alphaColor.a = 0;
+            spriteRenderer.color = alphaColor;
+        }
     }
 
     /*/// <summary>

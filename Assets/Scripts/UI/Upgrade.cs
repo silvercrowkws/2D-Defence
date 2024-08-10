@@ -58,7 +58,15 @@ public class Upgrade : MonoBehaviour
 
     Vector3 screenPosition;
 
+    /// <summary>
+    /// 배치된 solider를 파괴시키라고 알리는 델리게이트
+    /// </summary>
     public Action onDestroyButton;
+
+    /// <summary>
+    /// AttackBase에게 공격 범위의 알파를 0으로 바꾸라고 알리는 델리게이트
+    /// </summary>
+    public Action onAlphZero;    
 
     private void Awake()
     {
@@ -68,9 +76,9 @@ public class Upgrade : MonoBehaviour
         //yesButton.gameObject.SetActive(false);              // 처음엔 게임 오브젝트 안보이게 만들기
 
         /*yesButtonImage = yesButton.GetComponent<Image>();
-        yesColor = yesButtonImage.color;
+        yesColor = yesButtonImage.alphaColor;
         yesColor.a = fadeColor;                             // 알파값 0으로 만들기
-        yesButtonImage.color = yesColor;
+        yesButtonImage.alphaColor = yesColor;
         yesButtonImage.raycastTarget = false;               // 처음엔 raycastTarget 끄기*/
 
         child = transform.GetChild(1);
@@ -88,16 +96,16 @@ public class Upgrade : MonoBehaviour
         SetActiveFalse();
 
         /*noButtonImage = noButton.GetComponent<Image>();
-        noColor = noButtonImage.color;
+        noColor = noButtonImage.alphaColor;
         noColor.a = fadeColor;                              // 알파값 0으로 만들기
-        noButtonImage.color = noColor;
+        noButtonImage.alphaColor = noColor;
         noButtonImage.raycastTarget = false;                // 처음엔 raycastTarget 끄기*/
+
+        player = GameManager.Instance.Player;
     }
 
     private void Start()
     {
-        player = GameManager.Instance.Player;
-
         player.onClickedTileTransform += UpgradeButtonPosition;
     }
 
@@ -129,10 +137,10 @@ public class Upgrade : MonoBehaviour
         noButton.gameObject.SetActive(true);*/
 
         /*yesColor.a = appearColor;                   // 알파값 1로 만들어 보이게 만들기
-        yesButtonImage.color = yesColor;
+        yesButtonImage.alphaColor = yesColor;
 
         noColor.a = appearColor;
-        noButtonImage.color = noColor;
+        noButtonImage.alphaColor = noColor;
 
         yesButtonImage.raycastTarget = true;        // raycastTarget 켜기
         noButtonImage.raycastTarget = true;*/
@@ -159,10 +167,10 @@ public class Upgrade : MonoBehaviour
         noButton.gameObject.SetActive(false);*/
 
         /*yesColor.a = fadeColor;                     // 알파값 안보이게 만들기
-        yesButtonImage.color = yesColor;
+        yesButtonImage.alphaColor = yesColor;
 
         noColor.a = fadeColor;
-        noButtonImage.color = noColor;
+        noButtonImage.alphaColor = noColor;
 
         yesButtonImage.raycastTarget = false;       // raycastTarget 끄기
         noButtonImage.raycastTarget = false;*/
@@ -198,5 +206,6 @@ public class Upgrade : MonoBehaviour
         noButton.gameObject.SetActive(false);
         destroyButton.gameObject.SetActive(false);
         upgradeText.gameObject.SetActive(false);
+        onAlphZero?.Invoke();
     }
 }

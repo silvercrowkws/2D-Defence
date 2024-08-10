@@ -64,6 +64,7 @@ public class FollowMouse : MonoBehaviour
         child = transform.GetChild(3);
         wizardCircle = child.gameObject;
         wizardCircle.gameObject.SetActive(false);
+
     }
 
     void Start()
