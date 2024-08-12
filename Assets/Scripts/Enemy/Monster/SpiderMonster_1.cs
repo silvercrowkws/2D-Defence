@@ -22,7 +22,8 @@ public class SpiderMonster_1 : MonsterBase
     {
         moveSpeed = 4;
         waitTime = 0;
-        hp = 100.0f;
+        currentHp = 100.0f;
+        maxHP = currentHp;
         base.Start();
     }
 

@@ -8,7 +8,8 @@ public class MouseMonster_2 : MonsterBase
     {
         moveSpeed = 5;
         waitTime = 0;
-        hp = 75.0f;
+        currentHp = 75.0f;
+        maxHP = currentHp;
         base.Start();
     }
 }

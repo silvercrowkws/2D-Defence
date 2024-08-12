@@ -91,7 +91,7 @@ public class AttackBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("적과 충돌");
+            //Debug.Log("적과 충돌");
             MonsterBase monsterBase = collision.gameObject.GetComponent<MonsterBase>();     // 충돌한 게임 오브젝트에서 MonsterBase를 가져옴
             
             if (monsterBase != null && !attackList.Contains(monsterBase))       // 몬스터가 있고, 그 몬스터가 리스트에 포함되어 있지 않으면(중복된 몬스터가 리스트에 추가되는 것 방지)

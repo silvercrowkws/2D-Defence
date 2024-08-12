@@ -26,9 +26,14 @@ public class MonsterBase : MonoBehaviour
     protected float moveSpeed = 2.0f;
 
     /// <summary>
-    /// 몬스터의 체력
+    /// 최대 체력
     /// </summary>
-    protected float hp = 30.0f;
+    protected float maxHP = 100.0f;
+
+    /// <summary>
+    /// 몬스터의 현재 체력
+    /// </summary>
+    protected float currentHp = 30.0f;
 
     /// <summary>
     /// 어택 베이스
@@ -40,15 +45,16 @@ public class MonsterBase : MonoBehaviour
     /// </summary>
     public float HP
     {
-        get => hp;
+        get => currentHp;
         set
         {
-            if(hp != value)
+            if(currentHp != value)
             {
-                hp = value;
-                if(hp < 1)
+                //currentHp = value;
+                currentHp = Mathf.Clamp(value, 0, maxHP);
+                if(currentHp < 1)
                 {
-                    hp = 0;                     // 몬스터의 hp가 0이 된다면
+                    currentHp = 0;                     // 몬스터의 hp가 0이 된다면
                     monsterDieCount++;          // 죽은 몬스터의 숫자를 증가시키고
                     Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
                     //IncrementMonsterDieCount();

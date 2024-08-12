@@ -16,7 +16,8 @@ public class CyclopsMonster : MonsterBase
     {
         moveSpeed = 2.5f;
         waitTime = 0.5f;
-        hp = 200.0f;
+        currentHp = 200.0f;
+        maxHP = currentHp;
 
         gameManager = GameManager.Instance;
         player = GameManager.Instance.Player;
@@ -33,7 +34,7 @@ public class CyclopsMonster : MonsterBase
         // 충돌한 오브젝트의 태그가 바바리안 or 워리어 or 위자드 일 경우
         if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard"))
         {
-            if (Random.value < 0.1f)        // 10% 의 확률로
+            if (Random.value < 0.05f)        // 10% 의 확률로 => 5% 로 조정
             {
                 GameObject collisionGameObject = collision.gameObject;          // 충돌한 게임 오브젝트
                 player.objectSoliderDictionary.TryGetValue(collisionGameObject, out Vector3Int DestroyCellPosition);

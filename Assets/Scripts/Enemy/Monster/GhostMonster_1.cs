@@ -28,7 +28,8 @@ public class GhostMonster_1 : MonsterBase
     {
         moveSpeed = 3;
         waitTime = 0;
-        hp = 100.0f;
+        currentHp = 100.0f;
+        maxHP = currentHp;
 
         ghostRenderer = GetComponent<Renderer>();
         ghostCollider = GetComponent<Collider2D>();
@@ -63,7 +64,7 @@ public class GhostMonster_1 : MonsterBase
     /// <returns></returns>
     IEnumerator InvisibleCoroutine()
     {
-        while (hp > 1)      // hp 가 1보다 크면 발동
+        while (currentHp > 1)      // currentHp 가 1보다 크면 발동
         {
             yield return new WaitForSeconds(invisibleTime);     // invisibleTime 만큼 기다리고
 

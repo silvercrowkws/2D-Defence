@@ -24,8 +24,10 @@ public class LichMonster : MonsterBase
     {
         moveSpeed = 1.0f;
         waitTime = 0.5f;
-        hp = 300.0f;
-        healingAmount = (hp / 3);
+        currentHp = 300.0f;
+        maxHP = currentHp;
+
+        healingAmount = (currentHp / 3);
         healingInterval = 2.0f;
 
         Transform child = transform.GetChild(0);
@@ -43,18 +45,16 @@ public class LichMonster : MonsterBase
     /// <returns></returns>
     IEnumerator HealingCoroutine()
     {
-        while (HP > 1)       // HP가 1보다 크면 반복 => HP를 초과해서도 회복 가능
+        while (HP > 1)       // 최대 HP를 초과해서는 회복 안되게 MonsterBase에서 클램프
         {
-            /*yield return new WaitForSeconds(healingInterval);       // healingInterval만큼 기다리고
-            particle.Play();                                        // 파티클 시작
-            //Debug.Log($"회복 전 체력 : {HP}");
-            HP += healingAmount;
-            //Debug.Log($"회복 후 체력 : {HP}");*/
+            particle.Play();                // 파티클 시작
+            Debug.Log($"회복 전 체력 : {HP}");
 
-            particle.Play();        // 파티클 시작
-            HP += healingAmount;    // 회복
-            yield return new WaitForSeconds(healingInterval);       // healingInterval만큼 기다리고
-            particle.Stop();        // 파티클 종료
+            HP += healingAmount;            // 회복
+            Debug.Log($"회복 후 체력 : {HP}");
+            
+            yield return new WaitForSeconds(healingInterval);  // healingInterval만큼 기다리고
+            particle.Stop();  // 파티클 종료
         }
     }
 }
