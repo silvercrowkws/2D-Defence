@@ -72,12 +72,14 @@ public class AttackBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        player = GameManager.Instance.Player;
+        //player = GameManager.Instance.Player;
 
         attackList = new List<MonsterBase>();
 
-        player.onSoliderCilck += onAlphaChange;
-        player.onNonSoliderClick += onAlphaChange2;
+        //player.onSoliderCilck += onAlphaChange;
+
+        //player.onSoliderClick += HandleSoliderClick;
+        //player.onNonSoliderClick += onAlphaChange2;
 
         upgrade = FindAnyObjectByType<Upgrade>();
 
@@ -85,6 +87,19 @@ public class AttackBase : MonoBehaviour
         {
             upgrade.onAlphZero += onAlphaChange2;
         }
+    }
+
+    private void OnEnable()
+    {
+        player = GameManager.Instance.Player;
+        player.onSoliderClick += HandleSoliderClick;
+        player.onNonSoliderClick += onAlphaChange2;
+    }
+
+    private void OnDisable()
+    {
+        player.onSoliderClick -= HandleSoliderClick;
+        player.onNonSoliderClick -= onAlphaChange2;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -209,6 +224,21 @@ public class AttackBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 파괴되었을 때 문제 있음
+    /// </summary>
+    /// <param name="clickedSolider"></param>
+    private void HandleSoliderClick(GameObject clickedSolider)
+    {
+        if (clickedSolider != null)
+        {
+            if (clickedSolider == this.gameObject) // 클릭된 solider가 현재 객체와 동일한지 확인
+            {
+                onAlphaChange(); // 동일하면 알파값 변경 함수 호출
+            }
+        }
+    }
+
+    /// <summary>
     /// 스프라이트 렌더러의 알파를 조절하는 함수
     /// </summary>
     private void onAlphaChange()
@@ -232,6 +262,7 @@ public class AttackBase : MonoBehaviour
             spriteRenderer.color = alphaColor;
         }
     }
+
 
     /*/// <summary>
     /// 공격 반복용 코루틴

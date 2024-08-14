@@ -103,7 +103,8 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 각 solider를 클릭했을 때 공격 범위를 보이게 할 델리게이트
     /// </summary>
-    public Action onSoliderCilck;
+    //public Action onSoliderCilck;
+    public Action<GameObject> onSoliderClick;
 
     /// <summary>
     /// solider 이외의 것을 클릭했을 때 공격 범위를 안보이게 할 델리게이트
@@ -200,10 +201,25 @@ public class Player : MonoBehaviour
                             //Debug.Log($"cellPosition : {cellPosition}");
                             onClickedTileTransform?.Invoke(cellPosition);      // 델리게이트로 현재 solider가 클릭된 위치를 보냄
 
-                            Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
+                            //Vector3 tileWorldPosition = tilemap.CellToWorld(cellPosition);  // 월드 좌표 가져오기
                             //Debug.Log($"tileWorldPosition : {tileWorldPosition}");
 
-                            onSoliderCilck?.Invoke();       // solider를 클릭했다고 델리게이트로 알림
+                            // 클릭된 solider 가져오기
+                            if (soliderObjectDictionary.TryGetValue(cellPosition, out GameObject clickedSolider))
+                            {
+                                if (clickedSolider != null)
+                                {
+                                    Debug.Log($"누른 게임 오브젝트 : {clickedSolider}");
+
+                                    onSoliderClick?.Invoke(clickedSolider); // 클릭된 solider 전달
+
+                                    /*if (clickedTile == barbarianTile || clickedTile == warriorTile || clickedTile == wizardTile)
+                                    {
+                                        Debug.Log($"{clickedTile.name} 선택");
+                                        upgradeAble = true; // 강화 가능 변수 on
+                                    }*/
+                                }
+                            }
 
                             if (clickedTile == barbarianTile)
                             {
@@ -361,7 +377,13 @@ public class Player : MonoBehaviour
         // Dictionary에서 해당 위치의 오브젝트 찾기
         if (soliderObjectDictionary.TryGetValue(cellPosition, out GameObject soliderToDestroy))     // cellPosition에 있는 게임 오브젝트를 soliderToDestroy라고 정하기
         {
-            Destroy(soliderToDestroy); // 오브젝트 파괴
+            //Destroy(soliderToDestroy); // 오브젝트 파괴
+
+            if (soliderToDestroy != null)
+            {
+                Destroy(soliderToDestroy); // 오브젝트 파괴
+            }
+
             soliderObjectDictionary.Remove(cellPosition);       // Dictionary에서 제거
             objectSoliderDictionary.Remove(soliderToDestroy);   // Dictionary에서 제거
         }
