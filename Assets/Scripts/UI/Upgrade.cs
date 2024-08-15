@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,30 +27,6 @@ public class Upgrade : MonoBehaviour
     /// Upgrade? 텍스트
     /// </summary>
     TextMeshProUGUI upgradeText;
-
-    /*/// <summary>
-    /// Yes 버튼의 이미지
-    /// </summary>
-    Image yesButtonImage;
-
-    /// <summary>
-    /// No 버튼의 이미지
-    /// </summary>
-    Image noButtonImage;
-
-    /// <summary>
-    /// Yes 버튼의 컬러
-    /// </summary>
-    Color yesColor;
-
-    /// <summary>
-    /// No 버튼의 컬러
-    /// </summary>
-    Color noColor;
-
-    // 색상
-    const float fadeColor = 0.0f;
-    const float appearColor = 1.0f;*/
 
     /// <summary>
     /// 플레이어
@@ -118,12 +95,79 @@ public class Upgrade : MonoBehaviour
         // 월드 좌표를 스크린 좌표로 변환
         screenPosition = Camera.main.WorldToScreenPoint(cellPosition);
 
+
+        Vector3 cornerPosition = screenPosition;
+
+        // 화면의 너비를 기준으로 18분할 크기를 계산
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+        float sectionWidth = screenWidth / 18.0f;           // 가로 18 분할
+        float sectionHeight = screenHeight / 10.0f;         // 세로 10 분할
+
+        // 이동할 오프셋 값 (중앙으로 이동하기 위한 값)
+        float xOffset = sectionWidth / 18.0f;
+        float yOffset = sectionHeight / 10.0f;
+
+        Vector3 defaltUpgrade = new Vector3(150, 260, 0);       // 기본 위치
+        Vector3 changeUpgrade = new Vector3(150, -160, 0);      // 변경된 위치
+
+        upgradeText.rectTransform.localPosition = defaltUpgrade;        // 함수 불러질때 위치 초기화
+
+        // 마우스 위치가 맨 왼쪽(첫 번째) 또는 맨 오른쪽(마지막) 구역에 있는지 확인
+        if (cornerPosition.x <= sectionWidth)                           // 맨 왼쪽 코너이다
+        {
+            Debug.Log("왼쪽 코너 클릭");
+            cornerPosition.x += xOffset;                                // 왼쪽에서 클릭 시 중앙 쪽으로 이동
+            if (cornerPosition.y >= screenHeight - sectionHeight)       // 맨 왼쪽이면서 맨 위쪽이다
+            {
+                cornerPosition.y -= yOffset * 8;                        // 가려져서 8배 함
+                upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+            }
+            else if(cornerPosition.y <= sectionHeight)                  // 맨 왼쪽이면서 아래쪽이다
+            {
+                cornerPosition.y += yOffset * 8;
+            }
+        }
+        else if (cornerPosition.x >= screenWidth - sectionWidth)        // 맨 오른쪽 코너이다
+        {
+            Debug.Log("오른쪽 코너 클릭");
+            cornerPosition.x -= xOffset * 32;                                // 오른쪽에서 클릭 시 중앙 쪽으로 이동
+            if(cornerPosition.y >= screenHeight - sectionHeight)        // 맨 오른쪽이면서 위쪽이다
+            {
+                cornerPosition.y -= yOffset * 8;
+                upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+            }
+            else if(cornerPosition.y <= sectionHeight)                  // 맨 오른쪽이면서 아래쪽이다
+            {
+                cornerPosition.y += yOffset * 8;
+            }
+        }
+
+        // 마우스 위치가 맨 위쪽 또는 맨 아래쪽 구역에 있는지 확인
+        else if (cornerPosition.y >= screenHeight - sectionHeight)      // 맨 위쪽 코너이다
+        {
+            Debug.Log("위쪽 코너 클릭");
+            cornerPosition.y -= yOffset * 8;                                // 위쪽에서 클릭 시 중앙 쪽으로 이동
+            upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+        }
+        else if(cornerPosition.y >= screenHeight - sectionHeight * 2)   // 위에서 2번째 이다
+        {
+            Debug.Log("위에서 2번째 클릭");
+            upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+        }
+        else if (cornerPosition.y <= sectionHeight)                     // 맨 아래쪽 코너이다
+        {
+            Debug.Log("아래쪽 코너 클릭");
+            cornerPosition.y += yOffset * 8;                                // 아래쪽에서 클릭 시 중앙 쪽으로 이동
+        }
+
+
         // 스크린 좌표를 RectTransform의 로컬 좌표로 변환
         RectTransform rectTransform = GetComponent<RectTransform>();
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform.parent.GetComponent<RectTransform>(),
-            screenPosition,
+            cornerPosition,
             null,
             out localPoint
         );
