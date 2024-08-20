@@ -74,6 +74,35 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     TurnManager turnManager;
 
+    /// <summary>
+    /// 현재 가지고 있는 돈
+    /// </summary>
+    float currentMoney;
+
+    /// <summary>
+    /// 돈 프로퍼티
+    /// </summary>
+    public float Money
+    {
+        get => currentMoney;
+        set
+        {
+            if(currentMoney != value)
+            {
+                //currentMoney = value;
+                currentMoney = Mathf.Clamp(value, 0, 999);
+                Debug.Log($"남은 돈 : {currentMoney}");
+                moneyChange?.Invoke(currentMoney);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 돈이 변경되었음을 알리는 델리게이트(UI 수정용)
+    /// </summary>
+    public Action<float> moneyChange;
+
+
     /*protected override void Awake()
     {
         base.Awake();
@@ -81,6 +110,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        currentMoney = 50.0f;       // 처음 시작 소지금
+        moneyChange?.Invoke(currentMoney);
+
         //player.onCellPosition += SoliderSet;
     }
 

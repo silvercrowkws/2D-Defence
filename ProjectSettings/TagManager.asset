@@ -24,7 +24,7 @@ TagManager:
   - Trail
   - AttackRange
   - Effect
-  - 
+  - Money
   - 
   - 
   - 
@@ -69,4 +69,7 @@ TagManager:
     locked: 0
   - name: Effect
     uniqueID: 2221445297
+    locked: 0
+  - name: Money
+    uniqueID: 3018967741
     locked: 0
