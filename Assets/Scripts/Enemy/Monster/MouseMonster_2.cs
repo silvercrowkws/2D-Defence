@@ -10,6 +10,7 @@ public class MouseMonster_2 : MonsterBase
         waitTime = 0;
         currentHp = 75.0f;
         maxHP = currentHp;
+        dieMoney = 10.0f;
         base.Start();
     }
 }

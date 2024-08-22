@@ -224,7 +224,7 @@ public class AttackBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 파괴되었을 때 문제 있음
+    /// solider를 클릭했을 때 클릭한 solider가 이 게임 오브젝트면 알파값을 조절하는 함수를 실행시키는 함수
     /// </summary>
     /// <param name="clickedSolider"></param>
     private void HandleSoliderClick(GameObject clickedSolider)
@@ -239,7 +239,7 @@ public class AttackBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 스프라이트 렌더러의 알파를 조절하는 함수
+    /// 공격 범위 스프라이트 렌더러의 알파를 조절하는 함수
     /// </summary>
     private void onAlphaChange()
     {
@@ -251,7 +251,7 @@ public class AttackBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 스트라이트 렌더러의 알파를 안보이게 조절하는 함수
+    /// 공격 범위 스트라이트 렌더러의 알파를 안보이게 조절하는 함수
     /// </summary>
     private void onAlphaChange2()
     {

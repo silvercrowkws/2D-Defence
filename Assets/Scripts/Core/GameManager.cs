@@ -58,7 +58,16 @@ public class GameManager : Singleton<GameManager>
     public Action onGameStart;
     public Action onGameOver;
 
+    /// <summary>
+    /// 돈이 변경되었음을 알리는 델리게이트(UI 수정용)
+    /// </summary>
+    public Action<float> moneyChange;
+
+    /// <summary>
+    /// 플레이어
+    /// </summary>
     Player player;
+
     public Player Player
     {
         get
@@ -97,12 +106,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// 돈이 변경되었음을 알리는 델리게이트(UI 수정용)
-    /// </summary>
-    public Action<float> moneyChange;
-
-
     /*protected override void Awake()
     {
         base.Awake();
@@ -110,8 +113,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        currentMoney = 50.0f;       // 처음 시작 소지금
-        moneyChange?.Invoke(currentMoney);
+        currentMoney = 60.0f;       // 처음 시작 소지금
+        //moneyChange?.Invoke(currentMoney);        // 게임 매니저의 Start가 UI 변경시키는 CoinText 클래스보다 빨리 실행되서 해도 의미가 없음
 
         //player.onCellPosition += SoliderSet;
     }

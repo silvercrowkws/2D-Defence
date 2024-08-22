@@ -6,6 +6,11 @@ using UnityEngine;
 public class MonsterBase : MonoBehaviour
 {
     /// <summary>
+    /// 게임 매니저
+    /// </summary>
+    GameManager gameManager;
+
+    /// <summary>
     /// 웨이포인트
     /// </summary>
     Transform[] waypoints;
@@ -24,6 +29,11 @@ public class MonsterBase : MonoBehaviour
     /// 이동 속도
     /// </summary>
     protected float moveSpeed = 2.0f;
+
+    /// <summary>
+    /// 몬스터가 죽었을 때 주는 돈
+    /// </summary>
+    protected float dieMoney = 1.0f;
 
     /// <summary>
     /// 최대 체력
@@ -57,6 +67,9 @@ public class MonsterBase : MonoBehaviour
                     currentHp = 0;                     // 몬스터의 hp가 0이 된다면
                     monsterDieCount++;          // 죽은 몬스터의 숫자를 증가시키고
                     Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
+
+                    gameManager.Money += dieMoney;      // 돈 증가
+
                     //IncrementMonsterDieCount();
                     onDie?.Invoke();            // 몬스터가 죽었다고 델리게이트로 알림(공격순위 리스트에서 빼기 위해)
                     //attackBase.attackList.Remove(this);
@@ -96,6 +109,8 @@ public class MonsterBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        gameManager = GameManager.Instance;
+
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
 
         waypointCount = enemySpawner.transform.childCount;      // enemySpawner의 자식 개수

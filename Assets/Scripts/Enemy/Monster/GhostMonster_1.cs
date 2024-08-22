@@ -30,6 +30,7 @@ public class GhostMonster_1 : MonsterBase
         waitTime = 0;
         currentHp = 100.0f;
         maxHP = currentHp;
+        dieMoney = 5.0f;
 
         ghostRenderer = GetComponent<Renderer>();
         ghostCollider = GetComponent<Collider2D>();

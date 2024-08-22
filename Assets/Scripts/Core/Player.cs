@@ -131,6 +131,25 @@ public class Player : MonoBehaviour
     /// </summary>
     public Dictionary<GameObject, Vector3Int> objectSoliderDictionary = new Dictionary<GameObject, Vector3Int>();
 
+    /// <summary>
+    /// 게임 매니저
+    /// </summary>
+    GameManager gameManager;
+
+    /// <summary>
+    /// 바바리안의 가격
+    /// </summary>
+    public float barbarianPrice = 10.0f;
+
+    /// <summary>
+    /// 전사의 가격
+    /// </summary>
+    public float warriorPrice = 20.0f;
+
+    /// <summary>
+    /// 마법사의 가격
+    /// </summary>
+    public float wizardPrice = 50.0f;
 
     private void Awake()
     {
@@ -152,6 +171,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
         followMouse = FindAnyObjectByType<FollowMouse>();
         upgrade = FindAnyObjectByType<Upgrade>();
         upgrade.onDestroyButton += SoliderDestroy;
@@ -308,7 +328,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 솔저를 배치하는 함수
+    /// 솔저를 배치하는 함수(게임 매니저에서 Money 차감)
     /// </summary>
     private void SoliderSet(Vector3Int soliderPosition)
     {
@@ -325,22 +345,25 @@ public class Player : MonoBehaviour
 
         if (followMouse.soliderImage.sprite == followMouse.soliders[0])             // 바바리안을 클릭했었다
         {
+            gameManager.Money -= barbarianPrice;                                    // 바바리안의 가격만큼 차감
             soliderTilemap.SetTile(soliderPosition, barbarianTile);
             createdObject = Instantiate(collider_2_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             createdObject.name = "Barbarian";       // 이름 변경
             createdObject.transform.parent = this.gameObject.transform;     // 부모 설정
             Debug.Log("바바리안 타일 설치");
         }
-        else if(followMouse.soliderImage.sprite == followMouse.soliders[1])        // 전사를 클릭했었다
+        else if(followMouse.soliderImage.sprite == followMouse.soliders[1])         // 전사를 클릭했었다
         {
+            gameManager.Money -= warriorPrice;                                    // 전사의 가격만큼 차감
             soliderTilemap.SetTile(soliderPosition, warriorTile);
             createdObject = Instantiate(collider_3_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             createdObject.name = "Warrior";
             createdObject.transform.parent = this.gameObject.transform;
             Debug.Log("전사 타일 설치");
         }
-        else if(followMouse.soliderImage.sprite == followMouse.soliders[2])        // 마법사를 클릭했었다
+        else if(followMouse.soliderImage.sprite == followMouse.soliders[2])         // 마법사를 클릭했었다
         {
+            gameManager.Money -= wizardPrice;                                    // 마법사의 가격만큼 차감
             soliderTilemap.SetTile(soliderPosition, wizardTile);
             createdObject = Instantiate(collider_4_Tile, soliderPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
             createdObject.name = "Wizard";

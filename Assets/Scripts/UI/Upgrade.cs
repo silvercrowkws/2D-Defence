@@ -221,7 +221,7 @@ public class Upgrade : MonoBehaviour
     }
 
     /// <summary>
-    /// 설치된 solider를 파괴하는 함수
+    /// D 버튼을 눌러 설치된 solider를 파괴하는 함수
     /// </summary>
     private void DestroyFC()
     {

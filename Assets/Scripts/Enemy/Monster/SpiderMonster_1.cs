@@ -24,6 +24,7 @@ public class SpiderMonster_1 : MonsterBase
         waitTime = 0;
         currentHp = 100.0f;
         maxHP = currentHp;
+        dieMoney = 5.0f;
         base.Start();
     }
 

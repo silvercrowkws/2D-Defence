@@ -36,6 +36,8 @@ public class LichMonster : MonsterBase
 
         StartCoroutine(HealingCoroutine());
 
+        dieMoney = 15.0f;
+
         base.Start();
     }
     

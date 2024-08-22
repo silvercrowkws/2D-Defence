@@ -26,6 +26,8 @@ public class CyclopsMonster : MonsterBase
         laserRoot = child.gameObject;
         laserRoot.SetActive(false);
 
+        dieMoney = 15.0f;
+
         base.Start();
     }
 
