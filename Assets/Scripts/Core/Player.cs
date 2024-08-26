@@ -418,25 +418,34 @@ public class Player : MonoBehaviour
         {
             Debug.Log("강화 함수 수행");
 
-            SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+            //SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
 
-            if(clickedTile == barbarianTile)
+            if(clickedTile == barbarianTile && gameManager.Money >= barbarianPrice / 2)     // 클릭 타일이 바바리안이고 강화 가능한 돈 이상 있으면
             {
+                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+
+                gameManager.Money -= barbarianPrice / 2;                    // 바바리안의 절반 가격만큼 차감
                 soliderTilemap.SetTile(cellPosition, barbarianTile2);       // 바바리안 타일을 파괴하고 바바리안2 타일 설치                
 
                 createdObject = Instantiate(collider_2_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
                 createdObject.name = "Barbarian2";
             }
-            else if(clickedTile == warriorTile)
+            else if(clickedTile == warriorTile && gameManager.Money >= warriorPrice / 2)    // 클릭 타일이 전사이고 강화 가능한 돈 이상 있으면
             {
-                soliderTilemap.SetTile(cellPosition, warriorTile2);       // 워리어 타일을 파괴하고 워리어2 타일 설치                
+                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+
+                gameManager.Money -= warriorPrice / 2;                      // 전사의 절반 가격만큼 차감
+                soliderTilemap.SetTile(cellPosition, warriorTile2);         // 전사 타일을 파괴하고 워리어2 타일 설치                
 
                 createdObject = Instantiate(collider_3_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
                 createdObject.name = "Warrior2";
             }
-            else if(clickedTile == wizardTile)
+            else if(clickedTile == wizardTile && gameManager.Money >= wizardPrice / 2)      // 클릭 타일이 마법사이고 강화 가능한 돈 이상 있으면
             {
-                soliderTilemap.SetTile(cellPosition, wizardTile2);       // 위자드 타일을 파괴하고 위자드2 타일 설치                
+                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+
+                gameManager.Money -= wizardPrice / 2;                       // 마법사의 절반 가격만큼 차감
+                soliderTilemap.SetTile(cellPosition, wizardTile2);          // 위자드 타일을 파괴하고 위자드2 타일 설치                
 
                 createdObject = Instantiate(collider_4_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
                 createdObject.name = "Wizard2";

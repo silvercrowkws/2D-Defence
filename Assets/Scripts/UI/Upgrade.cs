@@ -29,6 +29,11 @@ public class Upgrade : MonoBehaviour
     TextMeshProUGUI upgradeText;
 
     /// <summary>
+    /// descriptionImage 이미지(설명용)
+    /// </summary>
+    Image descriptionImage;
+
+    /// <summary>
     /// 플레이어
     /// </summary>
     Player player;
@@ -73,7 +78,10 @@ public class Upgrade : MonoBehaviour
         destroyButton.onClick.AddListener(DestroyFC);
 
         child = transform.GetChild(3);
-        upgradeText = child.GetComponent <TextMeshProUGUI>();
+        upgradeText = child.GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(4);
+        descriptionImage = child.GetComponent<Image>();
 
         SetActiveFalse();
 
@@ -248,6 +256,7 @@ public class Upgrade : MonoBehaviour
         noButton.gameObject.SetActive(true);
         destroyButton.gameObject.SetActive(true);
         upgradeText.gameObject.SetActive(true);
+        descriptionImage.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -259,6 +268,7 @@ public class Upgrade : MonoBehaviour
         noButton.gameObject.SetActive(false);
         destroyButton.gameObject.SetActive(false);
         upgradeText.gameObject.SetActive(false);
+        descriptionImage.gameObject.SetActive(false);
         onAlphZero?.Invoke();
     }
 }
