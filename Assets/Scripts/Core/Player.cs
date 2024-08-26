@@ -39,9 +39,19 @@ public class Player : MonoBehaviour
     public TileBase barbarianTile;
 
     /// <summary>
+    /// barbarianTile2 을 연결할 변수
+    /// </summary>
+    public TileBase barbarianTile2;
+
+    /// <summary>
     /// warriorTile 을 연결할 변수
     /// </summary>
     public TileBase warriorTile;
+
+    /// <summary>
+    /// warriorTile2 을 연결할 변수
+    /// </summary>
+    public TileBase warriorTile2;
 
     /// <summary>
     /// wizardTile 을 연결할 변수
@@ -49,11 +59,23 @@ public class Player : MonoBehaviour
     public TileBase wizardTile;
 
     /// <summary>
+    /// wizardTile2 을 연결할 변수
+    /// </summary>
+    public TileBase wizardTile2;
+
+    /// <summary>
     /// 공격 범위 게임 오브젝트
     /// </summary>
     public GameObject collider_2_Tile;      // 바바리안 공격 범위
     public GameObject collider_3_Tile;      // 전사 공격 범위
     public GameObject collider_4_Tile;      // 마법사 공격 범위
+
+    /// <summary>
+    /// 강화된 공격 범위 게임 오브젝트
+    /// </summary>
+    public GameObject collider_2_Tile_Up;   // 강화 바바리안 공격 범위
+    public GameObject collider_3_Tile_Up;   // 강화 워리어 공격 범위
+    public GameObject collider_4_Tile_Up;   // 강화 마법사 공격 범위
 
     /// <summary>
     /// enemy 타일을 연결할 변수
@@ -175,6 +197,7 @@ public class Player : MonoBehaviour
         followMouse = FindAnyObjectByType<FollowMouse>();
         upgrade = FindAnyObjectByType<Upgrade>();
         upgrade.onDestroyButton += SoliderDestroy;
+        upgrade.onUpgradeYesButton += SoliderUpgrade;
     }
 
     /// <summary>
@@ -387,7 +410,46 @@ public class Player : MonoBehaviour
     /// </summary>
     private void SoliderUpgrade()
     {
+        Vector3 centerPosition = new Vector3(0.5f, 0.5f, 0);        // solider의 중앙 위치를 맞추기 위해
 
+        GameObject createdObject = null;
+
+        if (upgradeAble)            // 강화가 가능하면
+        {
+            Debug.Log("강화 함수 수행");
+
+            SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+
+            if(clickedTile == barbarianTile)
+            {
+                soliderTilemap.SetTile(cellPosition, barbarianTile2);       // 바바리안 타일을 파괴하고 바바리안2 타일 설치                
+
+                createdObject = Instantiate(collider_2_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+                createdObject.name = "Barbarian2";
+            }
+            else if(clickedTile == warriorTile)
+            {
+                soliderTilemap.SetTile(cellPosition, warriorTile2);       // 워리어 타일을 파괴하고 워리어2 타일 설치                
+
+                createdObject = Instantiate(collider_3_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+                createdObject.name = "Warrior2";
+            }
+            else if(clickedTile == wizardTile)
+            {
+                soliderTilemap.SetTile(cellPosition, wizardTile2);       // 위자드 타일을 파괴하고 위자드2 타일 설치                
+
+                createdObject = Instantiate(collider_4_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
+                createdObject.name = "Wizard2";
+            }
+
+            if (createdObject != null)
+            {
+                soliderObjectDictionary[cellPosition] = createdObject;   // Dictionary에 오브젝트 추가
+                objectSoliderDictionary[createdObject] = cellPosition;   // Dictionary에 오브젝트 추가
+            }
+
+            followMouse.SetFollowImageColorDisable();
+        }
     }
 
     /// <summary>

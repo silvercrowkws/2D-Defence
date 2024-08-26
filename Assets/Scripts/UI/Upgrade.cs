@@ -43,7 +43,12 @@ public class Upgrade : MonoBehaviour
     /// <summary>
     /// AttackBase에게 공격 범위의 알파를 0으로 바꾸라고 알리는 델리게이트
     /// </summary>
-    public Action onAlphZero;    
+    public Action onAlphZero;
+
+    /// <summary>
+    /// Player에게 업그레이드 Yes 버튼이 눌렸다고 알리는 델리게이트
+    /// </summary>
+    public Action onUpgradeYesButton;
 
     private void Awake()
     {
@@ -197,6 +202,8 @@ public class Upgrade : MonoBehaviour
     {
         SetActiveFalse();
         player.boardClickAble = true;
+        onUpgradeYesButton?.Invoke();
+        player.upgradeAble = false;     // 무슨 버튼을 누르던 강화가능 변수는 false 가 되어야 함
     }
 
     /// <summary>
@@ -206,6 +213,7 @@ public class Upgrade : MonoBehaviour
     {
         SetActiveFalse();
         player.boardClickAble = true;
+        player.upgradeAble = false;     // 무슨 버튼을 누르던 강화가능 변수는 false 가 되어야 함
 
         /*yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);*/
@@ -227,6 +235,7 @@ public class Upgrade : MonoBehaviour
     {
         SetActiveFalse();
         player.boardClickAble = true;
+        player.upgradeAble = false;     // 무슨 버튼을 누르던 강화가능 변수는 false 가 되어야 함
         onDestroyButton?.Invoke();
     }
 

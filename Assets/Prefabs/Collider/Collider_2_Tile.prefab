@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5219789666719509691}
   - component: {fileID: 5747899756777542104}
   - component: {fileID: 5522690812352467155}
-  - component: {fileID: 8006570472571950062}
   - component: {fileID: -4456432053588724031}
+  - component: {fileID: 8006570472571950062}
   m_Layer: 12
   m_Name: Collider_2_Tile
   m_TagString: Barbarian
@@ -123,20 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8006570472571950062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334863619464253367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74126ea505ef29428c72a5ee411a068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackList: []
-  elTime: 0
 --- !u!50 &-4456432053588724031
 Rigidbody2D:
   serializedVersion: 4
@@ -164,6 +150,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8006570472571950062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334863619464253367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74126ea505ef29428c72a5ee411a068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackList: []
+  elTime: 0
+  spiderWeb: {fileID: 0}
 --- !u!1001 &5570796136089108044
 PrefabInstance:
   m_ObjectHideFlags: 0

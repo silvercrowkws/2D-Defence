@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1853702833933470513}
   - component: {fileID: 2757926821146514293}
   - component: {fileID: -561380452644412782}
-  - component: {fileID: 2633058721389873360}
+  - component: {fileID: -886268542827888440}
   m_Layer: 12
-  m_Name: Collider_4_Tile
+  m_Name: Collider_4_Tile_Up
   m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2633058721389873360
+--- !u!114 &-886268542827888440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7549999061267216111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b84bea1978f5014f96c60338616b78f, type: 3}
+  m_Script: {fileID: 11500000, guid: dcaa6ca95d7df4846af31d0b812a677d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackList: []

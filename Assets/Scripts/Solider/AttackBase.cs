@@ -196,6 +196,7 @@ public class AttackBase : MonoBehaviour
                 //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
 
                 attackList[0].HP -= damage;
+                Debug.Log($"공격력 : {damage}");
             }
             //Debug.Log($"{attackList[0].name} 공격");        // HP 가 0이되는 순간 onDie가 발동되서 리스트에서 제거되기 때문에 오류 있음
             //Debug.Log($"{attackList[0].name}의 남은 HP : {attackList[0].HP}");
