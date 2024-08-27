@@ -173,6 +173,21 @@ public class Player : MonoBehaviour
     /// </summary>
     public float wizardPrice = 50.0f;
 
+    /// <summary>
+    /// 강화 바바리안의 가격
+    /// </summary>
+    float barbarian2Price;
+
+    /// <summary>
+    /// 강화 전사의 가격
+    /// </summary>
+    float warrior2Price;
+
+    /// <summary>
+    /// 강화 마법사의 가격
+    /// </summary>
+    float wizard2Price;
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -198,6 +213,10 @@ public class Player : MonoBehaviour
         upgrade = FindAnyObjectByType<Upgrade>();
         upgrade.onDestroyButton += SoliderDestroy;
         upgrade.onUpgradeYesButton += SoliderUpgrade;
+
+        barbarian2Price = barbarianPrice + (barbarianPrice * 0.5f);     // 15원
+        warrior2Price = warriorPrice + (warriorPrice * 0.5f);           // 30원
+        wizard2Price = wizardPrice + (wizardPrice * 0.5f);              // 75원
     }
 
     /// <summary>
@@ -420,31 +439,31 @@ public class Player : MonoBehaviour
 
             //SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
 
-            if(clickedTile == barbarianTile && gameManager.Money >= barbarianPrice / 2)     // 클릭 타일이 바바리안이고 강화 가능한 돈 이상 있으면
+            if(clickedTile == barbarianTile && gameManager.Money >= barbarianPrice * 0.5f)     // 클릭 타일이 바바리안이고 강화 가능한 돈 이상 있으면
             {
-                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+                SoliderDestroy(false);       // 해당 위치에 있던 솔저 파괴
 
-                gameManager.Money -= barbarianPrice / 2;                    // 바바리안의 절반 가격만큼 차감
+                gameManager.Money -= barbarianPrice * 0.5f;                    // 바바리안의 절반 가격만큼 차감
                 soliderTilemap.SetTile(cellPosition, barbarianTile2);       // 바바리안 타일을 파괴하고 바바리안2 타일 설치                
 
                 createdObject = Instantiate(collider_2_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
                 createdObject.name = "Barbarian2";
             }
-            else if(clickedTile == warriorTile && gameManager.Money >= warriorPrice / 2)    // 클릭 타일이 전사이고 강화 가능한 돈 이상 있으면
+            else if(clickedTile == warriorTile && gameManager.Money >= warriorPrice * 0.5f)    // 클릭 타일이 전사이고 강화 가능한 돈 이상 있으면
             {
-                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+                SoliderDestroy(false);       // 해당 위치에 있던 솔저 파괴
 
-                gameManager.Money -= warriorPrice / 2;                      // 전사의 절반 가격만큼 차감
+                gameManager.Money -= warriorPrice * 0.5f;                      // 전사의 절반 가격만큼 차감
                 soliderTilemap.SetTile(cellPosition, warriorTile2);         // 전사 타일을 파괴하고 워리어2 타일 설치                
 
                 createdObject = Instantiate(collider_3_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
                 createdObject.name = "Warrior2";
             }
-            else if(clickedTile == wizardTile && gameManager.Money >= wizardPrice / 2)      // 클릭 타일이 마법사이고 강화 가능한 돈 이상 있으면
+            else if(clickedTile == wizardTile && gameManager.Money >= wizardPrice * 0.5f)      // 클릭 타일이 마법사이고 강화 가능한 돈 이상 있으면
             {
-                SoliderDestroy();       // 해당 위치에 있던 솔저 파괴
+                SoliderDestroy(false);       // 해당 위치에 있던 솔저 파괴
 
-                gameManager.Money -= wizardPrice / 2;                       // 마법사의 절반 가격만큼 차감
+                gameManager.Money -= wizardPrice * 0.5f;                       // 마법사의 절반 가격만큼 차감
                 soliderTilemap.SetTile(cellPosition, wizardTile2);          // 위자드 타일을 파괴하고 위자드2 타일 설치                
 
                 createdObject = Instantiate(collider_4_Tile_Up, cellPosition + centerPosition, Quaternion.identity);        // 공격 범위 게임오브젝트 추가
@@ -464,8 +483,36 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 설치된 솔저를 파괴하는 함수
     /// </summary>
-    private void SoliderDestroy()
+    private void SoliderDestroy(bool returnMoney)
     {
+        if (returnMoney)
+        {
+            if(clickedTile == barbarianTile)
+            {
+                gameManager.Money += MathF.Floor(barbarianPrice * 0.5f);        // 바바리안을 파괴하면 바바리안 가격의 절반만큼 돌려줌
+            }
+            else if(clickedTile == warriorTile)
+            {
+                gameManager.Money += MathF.Floor(warriorPrice * 0.5f);          // 전사를 파괴하면 전사 가격의 절반만큼 돌려줌
+            }
+            else if(clickedTile == wizardTile)
+            {
+                gameManager.Money += MathF.Floor(wizardPrice * 0.5f);           // 마법사를 파괴하면 마법사 가격의 절반만큼 돌려줌
+            }
+            else if (clickedTile == barbarianTile2)
+            {
+                gameManager.Money += MathF.Floor(barbarian2Price * 0.5f);       // 강화 바바리안을 파괴하면 강화 바바리안 가격의 절반만큼 돌려줌
+            }
+            else if (clickedTile == warriorTile2)
+            {
+                gameManager.Money += MathF.Floor(warrior2Price * 0.5f);         // 강화 전사를 파괴하면 강화 전사 가격의 절반만큼 돌려줌
+            }
+            else if (clickedTile == wizardTile2)
+            {
+                gameManager.Money += MathF.Floor(wizard2Price * 0.5f);          // 강화 마법사를 파괴하면 강화 마법사 가격의 절반만큼 돌려줌
+            }
+        }
+
         soliderTilemap.SetTile(cellPosition, null);
 
         // Dictionary에서 해당 위치의 오브젝트 찾기

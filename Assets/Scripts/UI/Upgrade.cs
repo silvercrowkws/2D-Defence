@@ -43,7 +43,7 @@ public class Upgrade : MonoBehaviour
     /// <summary>
     /// 배치된 solider를 파괴시키라고 알리는 델리게이트
     /// </summary>
-    public Action onDestroyButton;
+    public Action<bool> onDestroyButton;
 
     /// <summary>
     /// AttackBase에게 공격 범위의 알파를 0으로 바꾸라고 알리는 델리게이트
@@ -244,7 +244,7 @@ public class Upgrade : MonoBehaviour
         SetActiveFalse();
         player.boardClickAble = true;
         player.upgradeAble = false;     // 무슨 버튼을 누르던 강화가능 변수는 false 가 되어야 함
-        onDestroyButton?.Invoke();
+        onDestroyButton?.Invoke(true);
     }
 
     /// <summary>
