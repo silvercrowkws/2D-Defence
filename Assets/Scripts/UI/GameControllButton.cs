@@ -54,7 +54,7 @@ public class GameControllButton : MonoBehaviour
         gamePauseButton.onClick.AddListener(GamePause);
         gamePauseButtonImage = child.GetChild(0).GetComponent<Image>();
 
-        Debug.Log("GamePauseButton Image Name: " + gamePauseButtonImage.name);
+        //Debug.Log("GamePauseButton Image Name: " + gamePauseButtonImage.name);
     }
 
     /// <summary>

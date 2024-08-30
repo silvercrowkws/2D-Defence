@@ -50,6 +50,16 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// </summary>
     bool isEndProcess = false;
 
+    /// <summary>
+    /// 턴 종료 웨이브
+    /// </summary>
+    public int endTurnNumber;
+
+    /// <summary>
+    /// 마지막 턴이 끝났음을 알리는 델리게이트(UI 갱신용)
+    /// </summary>
+    public Action<int> onTurnOver;
+
     private void Start()
     {
 
@@ -101,6 +111,26 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
 
             isEndProcess = false;   // 종료 처리가 끝났다고 표시
             OnTurnStart();          // 다음 턴 시작
+        }
+    }
+
+    /// <summary>
+    /// 마지막 웨이브가 끝나서 턴이 종료되는 함수
+    /// </summary>
+    public void OnTurnOver(int doorArriveCount)
+    {
+        if(isTurnEnable)    // 턴 매니저가 작동 중이면
+        {
+            isEndProcess = true;    // 종료 처리 중이라고 표시
+            onTurnEnd?.Invoke();    // 턴이 종료되었다고 알림
+            Debug.Log($"{turnNumber}턴 종료");
+            Debug.Log($"{turnNumber}턴은 마지막 턴이다.");
+
+            isEndProcess = false;   // 종료 처리가 끝났다고 표시
+
+            /*GameObject gameOverPanel = GameObject.Find("GameOverPanel");
+            gameOverPanel.SetActive(true);*/
+            onTurnOver?.Invoke(doorArriveCount);   // 마지막 턴이 끝났다고 알림
         }
     }
 

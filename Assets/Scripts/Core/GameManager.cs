@@ -113,6 +113,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        //gameState = GameState.GameReady;      // 위에서 바로 시작 시 게임 준비 상태로 됨
         currentMoney = 60.0f;       // 처음 시작 소지금
         //moneyChange?.Invoke(currentMoney);        // 게임 매니저의 Start가 UI 변경시키는 CoinText 클래스보다 빨리 실행되서 해도 의미가 없음
 

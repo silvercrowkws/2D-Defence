@@ -11,6 +11,8 @@ public class CountDown : MonoBehaviour
     /// </summary>
     TurnManager turnManager;
 
+    GameManager gameManager;
+
     /// <summary>
     /// 카운트 다운 텍스트
     /// </summary>
@@ -28,6 +30,8 @@ public class CountDown : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
+
         turnManager = FindAnyObjectByType<TurnManager>();
         //turnManager.onInitialize2Start += OnCountDown;
         turnManager.onInitialize2Start += () =>
@@ -48,6 +52,7 @@ public class CountDown : MonoBehaviour
         }
         else                                                    // 아니면
         {
+            gameManager.GameState = GameState.GameStart;        // 게임 상태를 Start로 변경
             turnManager.OnTurnStart2();                         // 턴 시작시키고
             this.gameObject.SetActive(false);                   // UI 안보이게 만들기
         }

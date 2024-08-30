@@ -107,6 +107,11 @@ public class MonsterBase : MonoBehaviour
     /// </summary>
     TurnManager turnManager;
 
+    /// <summary>
+    /// 웨이포인트를 모두 순회한 몬스터의 숫자(문에 부딪힌 몬스터의 숫자)
+    /// </summary>
+    static int doorArriveMonster;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
@@ -165,7 +170,13 @@ public class MonsterBase : MonoBehaviour
         // 여기부터는 모든 웨이포인트를 순회했음
 
         monsterDieCount++;          // 죽은 몬스터의 숫자 증가
+
         Debug.Log($"죽은 몬스터의 숫자 : {monsterDieCount}");
+
+        // 여기에 문에 도착한 적을 누적 시키는 부분 필요
+        doorArriveMonster++;
+        Debug.Log($"문에 도착한 적 : {doorArriveMonster}");
+
         //IncrementMonsterDieCount();
 
         TurnEndProcess();           // 턴을 종료시켜야 하는지 확인
@@ -180,10 +191,29 @@ public class MonsterBase : MonoBehaviour
     /// </summary>
     void TurnEndProcess()
     {
-        if (monsterDieCount == enemySpawner.maxMonsterCount)     // 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
+        Debug.Log("TurnEndProcess 실행");
+        // 문에 도착한 몬스터가 최대가 아니고(10마리), 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
+        if (doorArriveMonster != enemySpawner.maxMonsterCount  && monsterDieCount == enemySpawner.maxMonsterCount)
         {
-            monsterDieCount = 0;                                // 죽은 몬스터의 숫자 초기화
-            turnManager.OnTurnEnd2();
+            monsterDieCount = 0;                                        // 죽은 몬스터의 숫자 초기화
+            if(turnManager.turnNumber != turnManager.endTurnNumber)     // 현재 턴이 마지막 웨이브가 아니면
+            {
+                turnManager.OnTurnEnd2();
+            }
+            else
+            {
+                doorArriveMonster = 0;                          // 초기화
+                gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
+                turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
+            }
+        }
+
+        // 문에 도착한 몬스터가 최대이다(10마리)
+        else if(doorArriveMonster == enemySpawner.maxMonsterCount)
+        {
+            gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
+            turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
+            doorArriveMonster = 0;                          // 초기화
         }
     }
 
