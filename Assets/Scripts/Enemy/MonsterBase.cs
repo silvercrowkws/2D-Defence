@@ -198,13 +198,16 @@ public class MonsterBase : MonoBehaviour
             monsterDieCount = 0;                                        // 죽은 몬스터의 숫자 초기화
             if(turnManager.turnNumber != turnManager.endTurnNumber)     // 현재 턴이 마지막 웨이브가 아니면
             {
+                Debug.Log($"현재 턴 : {turnManager.turnNumber}");
+                Debug.Log($"턴 종료 웨이브 : {turnManager.endTurnNumber}");
+
                 turnManager.OnTurnEnd2();
             }
             else
             {
-                doorArriveMonster = 0;                          // 초기화
                 gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
                 turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
+                doorArriveMonster = 0;                          // 초기화
             }
         }
 

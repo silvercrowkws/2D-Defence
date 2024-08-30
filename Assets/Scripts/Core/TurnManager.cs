@@ -53,7 +53,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// <summary>
     /// 턴 종료 웨이브
     /// </summary>
-    public int endTurnNumber;
+    public int endTurnNumber = 20;
 
     /// <summary>
     /// 마지막 턴이 끝났음을 알리는 델리게이트(UI 갱신용)
