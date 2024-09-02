@@ -194,7 +194,7 @@ public class MonsterBase : MonoBehaviour
     {
         Debug.Log("TurnEndProcess 실행");
         // 문에 도착한 몬스터가 최대가 아니고(10마리), 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
-        if (doorArriveMonster != enemySpawner.maxMonsterCount  && monsterDieCount == enemySpawner.maxMonsterCount)
+        if (doorArriveMonster < enemySpawner.maxMonsterCount  && monsterDieCount == enemySpawner.maxMonsterCount)
         {
             monsterDieCount = 0;                                        // 죽은 몬스터의 숫자 초기화
             if(turnManager.turnNumber != turnManager.endTurnNumber)     // 현재 턴이 마지막 웨이브가 아니면
@@ -213,7 +213,7 @@ public class MonsterBase : MonoBehaviour
         }
 
         // 문에 도착한 몬스터가 최대이다(10마리)
-        else if(doorArriveMonster == enemySpawner.maxMonsterCount)
+        else if(doorArriveMonster >= enemySpawner.maxMonsterCount)
         {
             gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
             turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
