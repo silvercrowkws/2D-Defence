@@ -61,7 +61,7 @@ public class GameOverPanel : MonoBehaviour
             starImage_1.sprite = star[0];
             starImage_2.sprite = star[0];
         }
-        else                                          // 10마리가 들어왔다 => 게임 실패
+        else                                          // 10마리(이상)가 들어왔다 => 게임 실패
         {
             starImage_0.sprite = star[0];
             starImage_1.sprite = star[0];
