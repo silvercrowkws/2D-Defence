@@ -106,6 +106,30 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// 문의 남은 체력
+    /// </summary>
+    int doorLife;
+
+    public int DoorLife
+    {
+        get => doorLife;
+        set
+        {
+            if(doorLife != value)
+            {
+                doorLife = Mathf.Clamp(value, 0, 10);
+                Debug.Log($"문의 남은 체력 : {doorLife}");
+                onDoorLifeChange?.Invoke(doorLife);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 문의 체력이 변경되었음을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onDoorLifeChange;
+
     /*protected override void Awake()
     {
         base.Awake();
@@ -118,6 +142,8 @@ public class GameManager : Singleton<GameManager>
         //moneyChange?.Invoke(currentMoney);        // 게임 매니저의 Start가 UI 변경시키는 CoinText 클래스보다 빨리 실행되서 해도 의미가 없음
 
         //player.onCellPosition += SoliderSet;
+
+        doorLife = 10;              // 문의 체력
     }
 
     protected override void OnInitialize()

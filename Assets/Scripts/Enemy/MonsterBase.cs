@@ -176,6 +176,7 @@ public class MonsterBase : MonoBehaviour
         // 여기에 문에 도착한 적을 누적 시키는 부분 필요
         doorArriveMonster++;
         Debug.Log($"문에 도착한 적 : {doorArriveMonster}");
+        gameManager.DoorLife--;
 
         //IncrementMonsterDieCount();
 
