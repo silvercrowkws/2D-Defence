@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Singleton<EnemySpawner>
 {
     /*/// <summary>
     /// enemyTilemap을 연결할 변수
@@ -76,26 +76,10 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     float spawnDelay = 0;
 
-    private void Awake()
-    {
-        // 월드 좌표계의 transform.position을 타일맵의 셀 좌표계의 Vector3Int로 변환
-        /*spawnerPosition = enemyTilemap.WorldToCell(transform.position);
-
-        List<GameObject> waypointList = new List<GameObject>();
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag("Waypoint"))
-            {
-                waypointList.Add(child.gameObject);
-            }
-        }
-        waypoints = waypointList.ToArray();
-        Debug.Log($"Found {waypoints.Length} waypoints.");*/
-    }
-
     private void Start()
     {
         monsterRepository = GameObject.Find("MonsterRepository");
+        DontDestroyOnLoad(monsterRepository);
         turnManager = FindAnyObjectByType<TurnManager>();
 
         turnManager.onTurnStart += OnTurnStartFC;

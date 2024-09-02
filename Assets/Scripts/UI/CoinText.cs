@@ -38,7 +38,7 @@ public class CoinText : MonoBehaviour
 
     private void Start()
     {
-        Transform child = transform.GetChild(0);
+        /*Transform child = transform.GetChild(0);
         image_100 = child.GetComponent<Image>();        // 0번째 자식 100의 자리
 
         child = transform.GetChild(1);
@@ -46,6 +46,31 @@ public class CoinText : MonoBehaviour
 
         child = transform.GetChild(2);
         image_1 = child.GetComponent<Image>();          // 2번째 자식 1의 자리
+
+        gameManager.moneyChange += NumberImageChange;*/
+
+        Transform child = transform.GetChild(0);
+        if (child != null)
+        {
+            image_100 = child.GetComponent<Image>();        // 0번째 자식 100의 자리
+        }
+
+        child = transform.GetChild(1);
+        if (child != null)
+        {
+            image_10 = child.GetComponent<Image>();         // 1번째 자식 10의 자리
+        }
+
+        child = transform.GetChild(2);
+        if (child != null)
+        {
+            image_1 = child.GetComponent<Image>();          // 2번째 자식 1의 자리
+        }
+
+        if (image_100 == null || image_10 == null || image_1 == null)
+        {
+            Debug.LogError("One or more Image components are missing.");
+        }
 
         gameManager.moneyChange += NumberImageChange;
     }
@@ -56,6 +81,12 @@ public class CoinText : MonoBehaviour
     /// <param name="money">델리게이트로 받은 돈</param>
     private void NumberImageChange(float money)
     {
+        if (image_100 == null || image_10 == null || image_1 == null)
+        {
+            Debug.LogError("NumberImageChange 에서 터짐");
+            return;
+        }
+
         // money를 정수로 변환
         int coin = Mathf.FloorToInt(money);
 

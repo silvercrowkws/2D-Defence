@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverPanel : MonoBehaviour
 {
     TurnManager turnManager;
+
+    GameManager gameManager;
 
     /// <summary>
     /// star 스프라이트의 배열(0번이 빈 것, 1번이 차 있는 것)
@@ -19,6 +23,11 @@ public class GameOverPanel : MonoBehaviour
     Image starImage_0;
     Image starImage_1;
     Image starImage_2;
+
+    /// <summary>
+    /// 재시작 버튼
+    /// </summary>
+    Button restartButton;
     
 
     private void Awake()
@@ -26,14 +35,35 @@ public class GameOverPanel : MonoBehaviour
         turnManager = FindAnyObjectByType<TurnManager>();
         turnManager.onTurnOver += OnPanelChange;
 
+        gameManager = GameManager.Instance;
+
         Transform child = transform.GetChild(0);
 
         starImage_0 = child.GetChild(0).GetComponent<Image>();
         starImage_1 = child.GetChild(1).GetComponent<Image>();
         starImage_2 = child.GetChild(2).GetComponent<Image>();
 
+        child = transform.GetChild(1);
+        restartButton = child.GetComponent<Button>();
+        restartButton.onClick.AddListener(RestartButton);
+
+        //InitializeUIElements();
+
         this.gameObject.SetActive(false);       // 처음에 안보이게 하기
-    }
+    }/*
+
+    private void InitializeUIElements()
+    {
+        // 자식 오브젝트를 찾아서 Image 컴포넌트를 가져오기
+        Transform child = transform.GetChild(0);
+        starImage_0 = child.GetChild(0).GetComponent<Image>();
+        starImage_1 = child.GetChild(1).GetComponent<Image>();
+        starImage_2 = child.GetChild(2).GetComponent<Image>();
+
+        child = transform.GetChild(1);
+        restartButton = child.GetComponent<Button>();
+        restartButton.onClick.AddListener(RestartButton);
+    }*/
 
     /// <summary>
     /// 턴 매니저의 onTurnOver 델리게이트를 받아 게임 종료 시 패널을 변경하는 함수
@@ -67,5 +97,15 @@ public class GameOverPanel : MonoBehaviour
             starImage_1.sprite = star[0];
             starImage_2.sprite = star[0];
         }
+    }
+
+    /// <summary>
+    /// 재시작 버튼
+    /// </summary>
+    private void RestartButton()
+    {
+        Debug.Log("재시작 버튼 클릭");
+        gameManager.GameRestart();
+        SceneManager.LoadScene(0);
     }
 }

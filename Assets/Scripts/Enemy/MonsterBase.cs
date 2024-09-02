@@ -110,7 +110,7 @@ public class MonsterBase : MonoBehaviour
     /// <summary>
     /// 웨이포인트를 모두 순회한 몬스터의 숫자(문에 부딪힌 몬스터의 숫자)
     /// </summary>
-    static int doorArriveMonster;
+    static int doorArriveMonster = 0;
 
     protected virtual void Start()
     {
@@ -136,6 +136,9 @@ public class MonsterBase : MonoBehaviour
         turnManager = FindAnyObjectByType<TurnManager>();
 
         //attackBase = FindAnyObjectByType<AttackBase>();
+
+        monsterDieCount = 0;
+        doorArriveMonster = 0;
     }
 
     /// <summary>

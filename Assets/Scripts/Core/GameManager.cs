@@ -155,22 +155,19 @@ public class GameManager : Singleton<GameManager>
         turnManager.OnInitialize2();
     }
 
-    /*/// <summary>
-    /// 솔저를 배치하는 함수
-    /// </summary>
-    private void SoliderSet(Vector3Int soliderPosition)
-    {
-
-    }
-
     /// <summary>
-    /// 솔저를 강화하는 함수
+    /// 게임을 재시작 시킬때 초기화 시키는 함수
     /// </summary>
-    private void SoliderUpgrade()
+    public void GameRestart()
     {
-
-    }*/
-
+        Time.timeScale = 1.0f;                  // 타임 스케일 조정
+        gameState = GameState.GameReady;        // 게임 준비 상태로 전환
+        player.soliderObjectDictionary.Clear(); // 설치된 솔저 오브젝트 Dictionary(키 : 위치, 값 : 오브젝트) 초기화
+        player.objectSoliderDictionary.Clear(); // 설치된 오브젝트 솔저 Dictionary(키 : 오브젝트, 값 : 위치) 초기화
+        currentMoney = 60.0f;                   // 소지금 초기화
+        doorLife = 10;                          // 문의 체력 초기화
+        turnManager.OnInitialize2();            // 씬이 시작될 때 
+    }
 
 
 

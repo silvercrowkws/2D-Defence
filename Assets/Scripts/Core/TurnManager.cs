@@ -70,6 +70,10 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// </summary>
     public void OnInitialize2()                 // 이 함수 쓸 때 n초 지나는 UI 이후에 시작시켜야 함
     {
+        if(turnNumber == 0)
+        {
+            turnNumber = 1;                     // 초기화시 0부터 시작하기 때문에
+        }
         turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
 
         turnState = TurnProcessState.Idle;      // 턴 진행 상태 초기화
