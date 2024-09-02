@@ -217,7 +217,7 @@ public class MonsterBase : MonoBehaviour
         {
             gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
             turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
-            doorArriveMonster = 0;                          // 초기화
+            Debug.Log("문에 도착한 몬스터 최대");
         }
     }
 

@@ -124,7 +124,12 @@ public class Upgrade : MonoBehaviour
         Vector3 defaltUpgrade = new Vector3(150, 260, 0);       // 기본 위치
         Vector3 changeUpgrade = new Vector3(150, -160, 0);      // 변경된 위치
 
-        upgradeText.rectTransform.localPosition = defaltUpgrade;        // 함수 불러질때 위치 초기화
+        Vector3 defaultDes = new Vector3(355, 50, 0);           // 기본 위치
+        Vector3 changeDes = new Vector3(-55, 50, 0);            // 변경된 위치
+        
+
+        upgradeText.rectTransform.localPosition = defaltUpgrade;        // 함수 불러질 때 위치 초기화
+        descriptionImage.rectTransform.localPosition = defaultDes;      // 함수 불러질 때 위치 초기화
 
         // 마우스 위치가 맨 왼쪽(첫 번째) 또는 맨 오른쪽(마지막) 구역에 있는지 확인
         if (cornerPosition.x <= sectionWidth)                           // 맨 왼쪽 코너이다
@@ -136,21 +141,48 @@ public class Upgrade : MonoBehaviour
                 cornerPosition.y -= yOffset * 8;                        // 가려져서 8배 함
                 upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
             }
+
+            else if (cornerPosition.y >= screenHeight - sectionHeight * 2)      // 맨 왼쪽이면서 2번째 위쪽이다
+            {
+                upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+            }
+
             else if(cornerPosition.y <= sectionHeight)                  // 맨 왼쪽이면서 아래쪽이다
             {
-                cornerPosition.y += yOffset * 8;
+                // 정확히 첫 번째 섹션에 있을 때만 yOffset 적용
+                if (cornerPosition.y <= sectionHeight)
+                {
+                    cornerPosition.y += yOffset * 8;
+                    Debug.Log("이게 된건데");  // 이게 적용되는 조건
+                }
             }
         }
         else if (cornerPosition.x >= screenWidth - sectionWidth)        // 맨 오른쪽 코너이다
         {
             Debug.Log("오른쪽 코너 클릭");
-            cornerPosition.x -= xOffset * 32;                                // 오른쪽에서 클릭 시 중앙 쪽으로 이동
-            if(cornerPosition.y >= screenHeight - sectionHeight)        // 맨 오른쪽이면서 위쪽이다
+            descriptionImage.rectTransform.localPosition = changeDes;       // descriptionImage의 위치 조정
+            cornerPosition.x -= xOffset * 32;                               // 오른쪽에서 클릭 시 중앙 쪽으로 이동
+            if(cornerPosition.y >= screenHeight - sectionHeight)            // 맨 오른쪽이면서 위쪽이다
             {
                 cornerPosition.y -= yOffset * 8;
                 upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
             }
             else if(cornerPosition.y <= sectionHeight)                  // 맨 오른쪽이면서 아래쪽이다
+            {
+                cornerPosition.y += yOffset * 8;
+            }
+        }
+        else if (cornerPosition.x >= screenWidth - sectionWidth * 4)
+        {
+            Debug.Log("오른쪽 코너 클릭2");
+            descriptionImage.rectTransform.localPosition = changeDes;       // descriptionImage의 위치 조정
+            cornerPosition.x -= xOffset * 32;                               // 오른쪽에서 클릭 시 중앙 쪽으로 이동
+            if (cornerPosition.y >= screenHeight - sectionHeight)            // 맨 오른쪽이면서 위쪽이다
+            {
+                cornerPosition.y -= yOffset * 8;
+                upgradeText.rectTransform.localPosition = changeUpgrade;       // upgradeText의 위치 조정
+            }
+            else if (cornerPosition.y <= sectionHeight)                  // 맨 오른쪽이면서 아래쪽이다
             {
                 cornerPosition.y += yOffset * 8;
             }
@@ -172,6 +204,11 @@ public class Upgrade : MonoBehaviour
         {
             Debug.Log("아래쪽 코너 클릭");
             cornerPosition.y += yOffset * 8;                                // 아래쪽에서 클릭 시 중앙 쪽으로 이동
+        }
+        else if(cornerPosition.y <= sectionHeight * 2)                  // 아래에서 2번째
+        {
+            Debug.Log("아래쪽 코너 클릭2");
+            cornerPosition.y += yOffset * 8;
         }
 
 
