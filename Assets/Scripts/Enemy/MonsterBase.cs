@@ -136,9 +136,9 @@ public class MonsterBase : MonoBehaviour
         turnManager = FindAnyObjectByType<TurnManager>();
 
         //attackBase = FindAnyObjectByType<AttackBase>();
-
-        monsterDieCount = 0;
-        doorArriveMonster = 0;
+        
+        //monsterDieCount = 0;
+        //doorArriveMonster = 0;
     }
 
     /// <summary>
@@ -196,12 +196,20 @@ public class MonsterBase : MonoBehaviour
     void TurnEndProcess()
     {
         Debug.Log("TurnEndProcess 실행");
-        // 문에 도착한 몬스터가 최대가 아니고(10마리), 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
-        if (doorArriveMonster < enemySpawner.maxMonsterCount  && monsterDieCount == enemySpawner.maxMonsterCount)
+        // 문의 남은 체력이 0보다 크고, 죽은 몬스터의 숫자가 최대 몬스터 숫자이면
+        if (gameManager.DoorLife > 0 && monsterDieCount == enemySpawner.maxMonsterCount)
         {
             monsterDieCount = 0;                                        // 죽은 몬스터의 숫자 초기화
-            if(turnManager.turnNumber != turnManager.endTurnNumber)     // 현재 턴이 마지막 웨이브가 아니면
+
+            if (turnManager.turnNumber == 0)
             {
+                Debug.Log("턴 꼬임");
+                turnManager.turnNumber = 1;
+            }
+
+            if (turnManager.turnNumber != turnManager.endTurnNumber)     // 현재 턴이 마지막 웨이브가 아니면
+            {
+                
                 Debug.Log($"현재 턴 : {turnManager.turnNumber}");
                 Debug.Log($"턴 종료 웨이브 : {turnManager.endTurnNumber}");
 
@@ -209,18 +217,26 @@ public class MonsterBase : MonoBehaviour
             }
             else
             {
+                // 문의 남은 체력이 0보다 크고, 죽은 몬스터 숫자가 최대 인데, 현재 턴이 마지막 웨이브 일때
                 gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
-                turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
+                turnManager.OnTurnOver(gameManager.DoorLife);   // 새로운 턴이 시작되지 않게 턴 종료
                 doorArriveMonster = 0;                          // 초기화
             }
         }
 
-        // 문에 도착한 몬스터가 최대이다(10마리)
-        else if(doorArriveMonster >= enemySpawner.maxMonsterCount)
+        // 문의 남은 체력이 0보다 작거나 같다 => 1보다 작다
+        else if(gameManager.DoorLife < 1)
         {
+            if (turnManager.turnNumber == 0)
+            {
+                Debug.Log("턴 꼬임");
+                turnManager.turnNumber = 1;
+            }
             gameManager.GameState = GameState.GameOver;     // 게임 상태를 Over로 변경
-            turnManager.OnTurnOver(doorArriveMonster);      // 새로운 턴이 시작되지 않게 턴 종료
+            turnManager.OnTurnOver(gameManager.DoorLife);   // 새로운 턴이 시작되지 않게 턴 종료
             Debug.Log("문에 도착한 몬스터 최대");
+            monsterDieCount = 0;                            // 죽은 몬스터의 숫자 초기화
+            doorArriveMonster = 0;                          // 초기화
         }
     }
 

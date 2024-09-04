@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class EnemySpawner : Singleton<EnemySpawner>
+public class EnemySpawner : MonoBehaviour
 {
     /*/// <summary>
     /// enemyTilemap을 연결할 변수
@@ -79,10 +79,52 @@ public class EnemySpawner : Singleton<EnemySpawner>
     private void Start()
     {
         monsterRepository = GameObject.Find("MonsterRepository");
-        DontDestroyOnLoad(monsterRepository);
-        turnManager = FindAnyObjectByType<TurnManager>();
+        if (monsterRepository == null)
+        {
+            Debug.LogError("MonsterRepository를 찾을 수 없음");
+        }
+        else
+        {
+            DontDestroyOnLoad(monsterRepository);
+            Debug.Log("MonsterRepository 초기화됨");
+        }
 
-        turnManager.onTurnStart += OnTurnStartFC;
+        //DontDestroyOnLoad(monsterRepository);
+        turnManager = FindAnyObjectByType<TurnManager>();
+        if (turnManager != null)
+        {
+            turnManager.onTurnStart += OnTurnStartFC;
+            Debug.Log("onTurnStart 이벤트 구독됨");
+        }
+        else
+        {
+            Debug.LogError("TurnManager를 찾을 수 없음");
+        }
+
+        //turnManager.onTurnStart += OnTurnStartFC;
+    }
+
+    /*private void OnEnable()
+    {
+        turnManager = FindAnyObjectByType<TurnManager>();
+        if (turnManager != null)
+        {
+            turnManager.onTurnStart += OnTurnStartFC;
+            Debug.Log("onTurnStart 이벤트 구독됨");
+        }
+        else
+        {
+            Debug.LogError("TurnManager를 찾을 수 없음");
+        }
+    }*/
+
+    private void OnDisable()
+    {
+        if (turnManager != null)
+        {
+            turnManager.onTurnStart -= OnTurnStartFC;
+            Debug.Log("onTurnStart 이벤트 구독 해제됨");
+        }
     }
 
     /// <summary>
@@ -278,6 +320,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     /// <param name="_"></param>
     private void OnTurnStartFC(int _)
     {
+        Debug.Log("OnTurnStartFC 실행");
         StartCoroutine(SpawnerEnemyCoroutine(3.0f));
     }
 

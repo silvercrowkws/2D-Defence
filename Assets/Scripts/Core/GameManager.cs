@@ -166,7 +166,8 @@ public class GameManager : Singleton<GameManager>
         player.objectSoliderDictionary.Clear(); // 설치된 오브젝트 솔저 Dictionary(키 : 오브젝트, 값 : 위치) 초기화
         currentMoney = 60.0f;                   // 소지금 초기화
         doorLife = 10;                          // 문의 체력 초기화
-        turnManager.OnInitialize2();            // 씬이 시작될 때 
+        turnManager.turnNumber = 0;
+        //turnManager.OnInitialize2();            // 씬이 시작될 때 
     }
 
 

@@ -42,6 +42,18 @@ public class CountDown : MonoBehaviour
         countDownText = GetComponent<TextMeshProUGUI>();
     }
 
+    private void OnDisable()
+    {
+        // 게임 오브젝트가 비활성화될 때 이벤트 구독 해제
+        if (turnManager != null)
+        {
+            turnManager.onInitialize2Start -= () =>
+            {
+                countDownStart = true;
+            };
+        }
+    }
+
 
     private void Update()
     {

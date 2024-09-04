@@ -50,9 +50,9 @@ public class GameOverPanel : MonoBehaviour
         //InitializeUIElements();
 
         this.gameObject.SetActive(false);       // 처음에 안보이게 하기
-    }/*
+    }
 
-    private void InitializeUIElements()
+    /*private void InitializeUIElements()
     {
         // 자식 오브젝트를 찾아서 Image 컴포넌트를 가져오기
         Transform child = transform.GetChild(0);
@@ -68,34 +68,42 @@ public class GameOverPanel : MonoBehaviour
     /// <summary>
     /// 턴 매니저의 onTurnOver 델리게이트를 받아 게임 종료 시 패널을 변경하는 함수
     /// </summary>
-    /// <param name="doorMonster">문에 들어온 몬스터</param>
-    private void OnPanelChange(int doorMonster)
+    /// <param name="panelDoorLife">문의 체력</param>
+    private void OnPanelChange(int panelDoorLife)
     {
+        // GameOverPanel이 이미 파괴된 경우를 방지하기 위한 안전성 검사
+        if (this == null || gameObject == null) return;
+
+
         this.gameObject.SetActive(true);
 
-        if(doorMonster == 0)                            // 한마리도 들어오지 않았다
+        if(panelDoorLife == 0)                                  // 문의 체력이 0이다(10마리가 들어왔다)
+        {
+            starImage_0.sprite = star[0];
+            starImage_1.sprite = star[0];
+            starImage_2.sprite = star[0];
+        }        
+        else if(panelDoorLife > 0 && panelDoorLife < 6)         // 문의 체력이 1 ~ 5이다
+        {
+            starImage_0.sprite = star[1];
+            starImage_1.sprite = star[0];
+            starImage_2.sprite = star[0];
+        }
+        else if (panelDoorLife > 5 && panelDoorLife < 10)       // 문의 체력이 6 ~ 9이다
+        {
+            starImage_0.sprite = star[1];
+            starImage_1.sprite = star[1];
+            starImage_2.sprite = star[0];
+        }
+        else if (panelDoorLife > 9)                             // 문의 체력이 10이다
         {
             starImage_0.sprite = star[1];
             starImage_1.sprite = star[1];
             starImage_2.sprite = star[1];
         }
-        else if(doorMonster > 0 && doorMonster < 6)     // 들어온 몬스터가 1 ~ 5마리 이다
+        else                                                    // 오류?
         {
-            starImage_0.sprite = star[1];
-            starImage_1.sprite = star[1];
-            starImage_2.sprite = star[0];
-        }
-        else if(doorMonster > 5 && doorMonster < 10)   // 들어온 몬스터가 6 ~ 9마리 이다
-        {
-            starImage_0.sprite = star[1];
-            starImage_1.sprite = star[0];
-            starImage_2.sprite = star[0];
-        }
-        else                                          // 10마리(이상)가 들어왔다 => 게임 실패
-        {
-            starImage_0.sprite = star[0];
-            starImage_1.sprite = star[0];
-            starImage_2.sprite = star[0];
+            Debug.Log("문의 체력 오류?");
         }
     }
 
@@ -105,6 +113,7 @@ public class GameOverPanel : MonoBehaviour
     private void RestartButton()
     {
         Debug.Log("재시작 버튼 클릭");
+        //this.gameObject.SetActive(false);
         gameManager.GameRestart();
         SceneManager.LoadScene(0);
     }

@@ -23,7 +23,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// <summary>
     /// 현재 턴 번호(몇번째 턴인지)
     /// </summary>
-    public int turnNumber = 1;
+    public int turnNumber = 0;
 
     /// <summary>
     /// 턴이 진행될지 여부(true면 턴이 진행되고 false면 턴이 진행되지 않는다)
@@ -62,7 +62,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
 
     private void Start()
     {
-
+        turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
     }
 
     /// <summary>
@@ -70,11 +70,11 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// </summary>
     public void OnInitialize2()                 // 이 함수 쓸 때 n초 지나는 UI 이후에 시작시켜야 함
     {
-        if(turnNumber == 0)
+        /*if(turnNumber == 0)
         {
             turnNumber = 1;                     // 초기화시 0부터 시작하기 때문에
-        }
-        turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
+        }*/
+        //turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
 
         turnState = TurnProcessState.Idle;      // 턴 진행 상태 초기화
         isTurnEnable = true;                    // 턴 켜기
@@ -107,6 +107,12 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// </summary>
     void OnTurnEnd()
     {
+        /*if(turnNumber == 0)
+        {
+            turnNumber = 1;     // 가끔 현재 턴이 0인 상태가 있음
+            Debug.Log("턴 꼬였음");
+        }*/
+
         if (isTurnEnable)    // 턴 매니저가 작동 중이면
         {
             isEndProcess = true;    // 종료 처리 중이라고 표시
