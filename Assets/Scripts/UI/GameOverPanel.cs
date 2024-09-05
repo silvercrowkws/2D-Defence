@@ -52,6 +52,14 @@ public class GameOverPanel : MonoBehaviour
         this.gameObject.SetActive(false);       // 처음에 안보이게 하기
     }
 
+    private void OnDestroy()
+    {
+        if(turnManager != null)
+        {
+            turnManager.onTurnOver -= OnPanelChange;
+        }
+    }
+
     /*private void InitializeUIElements()
     {
         // 자식 오브젝트를 찾아서 Image 컴포넌트를 가져오기

@@ -78,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+
         monsterRepository = GameObject.Find("MonsterRepository");
         if (monsterRepository == null)
         {

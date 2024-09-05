@@ -60,8 +60,10 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// </summary>
     public Action<int> onTurnOver;
 
+    GameManager gameManager;
     private void Start()
     {
+        gameManager = GameManager.Instance;
         turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
     }
 
@@ -74,7 +76,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
         {
             turnNumber = 1;                     // 초기화시 0부터 시작하기 때문에
         }*/
-        //turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작
+        //turnNumber = 0;                         // OnTurnStart에서 turnNumber를 증가 시키기 때문에 0에서 시작        
 
         turnState = TurnProcessState.Idle;      // 턴 진행 상태 초기화
         isTurnEnable = true;                    // 턴 켜기
@@ -127,6 +129,7 @@ public class TurnManager : Singleton<TurnManager>       // 나중에 리스타�
     /// <summary>
     /// 마지막 웨이브가 끝나서 턴이 종료되는 함수
     /// </summary>
+    /// <param name="doorArriveCount">문의 남은 체력</param>
     public void OnTurnOver(int doorArriveCount)
     {
         if(isTurnEnable)    // 턴 매니저가 작동 중이면
