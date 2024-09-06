@@ -171,7 +171,7 @@ public class AttackBase : MonoBehaviour
 
         if(attackList.Count > 0 && attackList[0].HP > 0)    // attackList의 0번 HP가 0보다 크면
         {
-            if (transform.CompareTag("Wizard"))             // 마법사의 경우
+            if (transform.CompareTag("Wizard") || transform.CompareTag("Wizard2"))             // 마법사의 경우
             {
                 // 만약 본인이 마법사라면 리스트에 있는 모든 몬스터 공격
                 for (int i = 0; i < attackList.Count; i++)      // 공격하는 순간에도 리스트의 변형이 일어나기 때문에 foreach문 안됨
@@ -190,9 +190,24 @@ public class AttackBase : MonoBehaviour
 
                 attackList[0].HP -= damage;     // damage 만큼 HP 깍음
             }
+            else if (transform.CompareTag("Warrior2"))        // 전사2의 경우
+            {
+                factory.GetWeapon_Warrior_02(attackList[0].transform.position, 180.0f);     // 팩토리를 이용해 검 생성
+                //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
+
+                attackList[0].HP -= damage;     // damage 만큼 HP 깍음
+            }
             else if (transform.CompareTag("Barbarian"))     // 바바리안의 경우
             {
                 factory.GetWeapon_Barbarian_01(attackList[0].transform.position, 180.0f);   // 팩토리를 이용해 도끼 생성
+                //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
+
+                attackList[0].HP -= damage;
+                //Debug.Log($"공격력 : {damage}");
+            }
+            else if (transform.CompareTag("Barbarian2"))     // 바바리안2의 경우
+            {
+                factory.GetWeapon_Barbarian_02(attackList[0].transform.position, 180.0f);   // 팩토리를 이용해 도끼 생성
                 //Debug.Log($"0번째 리스트의 위치 : {attackList[0].transform.position}");
 
                 attackList[0].HP -= damage;

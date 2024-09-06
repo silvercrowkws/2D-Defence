@@ -31,7 +31,7 @@ public class SpiderMonster_1 : MonsterBase
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 태그가 바바리안 or 워리어 or 위자드 일 경우
-        if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard"))
+        if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard") || collision.CompareTag("Barbarian2") || collision.CompareTag("Warrior2") || collision.CompareTag("Wizard2"))
         {
             if (UnityEngine.Random.value < 0.1f)        // 10% 의 확률로
             {

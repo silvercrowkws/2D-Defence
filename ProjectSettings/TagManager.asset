@@ -9,6 +9,9 @@ TagManager:
   - Wizard
   - Barbarian
   - Warrior
+  - Barbarian2
+  - Warrior2
+  - Wizard2
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -886268542827888440}
   m_Layer: 12
   m_Name: Collider_4_Tile_Up
-  m_TagString: Wizard
+  m_TagString: Wizard2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

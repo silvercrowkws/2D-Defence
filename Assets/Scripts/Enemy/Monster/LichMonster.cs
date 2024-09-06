@@ -24,7 +24,7 @@ public class LichMonster : MonsterBase
     {
         moveSpeed = 1.0f;
         waitTime = 0.5f;
-        currentHp = 300.0f;
+        currentHp = 600.0f;
         maxHP = currentHp;
 
         healingAmount = (currentHp / 3);

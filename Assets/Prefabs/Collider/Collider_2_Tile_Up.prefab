@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2002914052389584088}
   m_Layer: 12
   m_Name: Collider_2_Tile_Up
-  m_TagString: Barbarian
+  m_TagString: Barbarian2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

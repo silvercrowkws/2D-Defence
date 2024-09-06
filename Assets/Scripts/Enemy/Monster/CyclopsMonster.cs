@@ -16,7 +16,7 @@ public class CyclopsMonster : MonsterBase
     {
         moveSpeed = 2.5f;
         waitTime = 0.5f;
-        currentHp = 200.0f;
+        currentHp = 400.0f;
         maxHP = currentHp;
 
         gameManager = GameManager.Instance;
@@ -34,7 +34,7 @@ public class CyclopsMonster : MonsterBase
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트의 태그가 바바리안 or 워리어 or 위자드 일 경우
-        if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard"))
+        if (collision.CompareTag("Barbarian") || collision.CompareTag("Warrior") || collision.CompareTag("Wizard") || collision.CompareTag("Barbarian2") || collision.CompareTag("Warrior2") || collision.CompareTag("Wizard2"))
         {
             if (Random.value < 0.05f)        // 10% 의 확률로 => 5% 로 조정
             {
