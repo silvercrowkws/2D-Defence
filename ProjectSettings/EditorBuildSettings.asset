@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test_11_UpgradeFC.unity
-    guid: 6cea756fdea001a40a7222639d4875a8
+    path: Assets/Scenes/FinalScene/StartScene.unity
+    guid: 0b2e9dc768aea604a92d340cb5c1a286
+  - enabled: 1
+    path: Assets/Scenes/FinalScene/MainScene.unity
+    guid: 98767b24a7cd32440a757da4ab28167e
   m_configObjects: {}

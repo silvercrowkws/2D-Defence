@@ -16,7 +16,7 @@ public class CyclopsMonster : MonsterBase
     {
         moveSpeed = 2.5f;
         waitTime = 0.5f;
-        currentHp = 400.0f;
+        currentHp = 700.0f;
         maxHP = currentHp;
 
         gameManager = GameManager.Instance;

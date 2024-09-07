@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +27,11 @@ public class GameOverPanel : MonoBehaviour
     /// 재시작 버튼
     /// </summary>
     Button restartButton;
+
+    /// <summary>
+    /// 메인 버튼
+    /// </summary>
+    Button mainButton;
     
 
     private void Awake()
@@ -46,6 +50,10 @@ public class GameOverPanel : MonoBehaviour
         child = transform.GetChild(1);
         restartButton = child.GetComponent<Button>();
         restartButton.onClick.AddListener(RestartButton);
+
+        child = transform.GetChild(2);
+        mainButton = child.GetComponent<Button>();
+        mainButton.onClick.AddListener(GoMain);
 
         //InitializeUIElements();
 
@@ -122,6 +130,16 @@ public class GameOverPanel : MonoBehaviour
     {
         Debug.Log("재시작 버튼 클릭");
         //this.gameObject.SetActive(false);
+        gameManager.GameRestart();
+        SceneManager.LoadScene(1);
+    }
+
+    /// <summary>
+    /// 메인으로 돌아가는 버튼
+    /// </summary>
+    private void GoMain()
+    {
+        Debug.Log("메인 버튼 클릭");
         gameManager.GameRestart();
         SceneManager.LoadScene(0);
     }

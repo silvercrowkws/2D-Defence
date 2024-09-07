@@ -138,7 +138,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         //gameState = GameState.GameReady;      // 위에서 바로 시작 시 게임 준비 상태로 됨
-        currentMoney = 60.0f;       // 처음 시작 소지금
+        currentMoney = 100.0f;       // 처음 시작 소지금
         //moneyChange?.Invoke(currentMoney);        // 게임 매니저의 Start가 UI 변경시키는 CoinText 클래스보다 빨리 실행되서 해도 의미가 없음
 
         //player.onCellPosition += SoliderSet;
@@ -164,7 +164,7 @@ public class GameManager : Singleton<GameManager>
         gameState = GameState.GameReady;        // 게임 준비 상태로 전환
         player.soliderObjectDictionary.Clear(); // 설치된 솔저 오브젝트 Dictionary(키 : 위치, 값 : 오브젝트) 초기화
         player.objectSoliderDictionary.Clear(); // 설치된 오브젝트 솔저 Dictionary(키 : 오브젝트, 값 : 위치) 초기화
-        currentMoney = 60.0f;                   // 소지금 초기화
+        currentMoney = 100.0f;                   // 소지금 초기화
         doorLife = 10;                          // 문의 체력 초기화
         turnManager.turnNumber = 0;
         //turnManager.OnInitialize2();            // 씬이 시작될 때 
