@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Test_03_Turn : TestBase
 {
+#if UNITY_EDITOR
     TurnManager turnManager;
     EnemySpawner enemySpawner;
 
@@ -30,4 +31,5 @@ public class Test_03_Turn : TestBase
     {
         enemySpawner.Test_SpawnEnemy();
     }
+#endif
 }

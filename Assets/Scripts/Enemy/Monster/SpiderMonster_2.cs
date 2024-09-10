@@ -22,7 +22,7 @@ public class SpiderMonster_2 : MonsterBase
     {
         moveSpeed = 4;
         waitTime = 0;
-        currentHp = 150.0f;
+        currentHp = 120.0f;
         maxHP = currentHp;
         dieMoney = 10.0f;
         base.Start();

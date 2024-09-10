@@ -198,11 +198,13 @@ public class Player : MonoBehaviour
     {
         inputActions.Enable();
         inputActions.PlayerClicks.Click.performed += BoardClick;
+        inputActions.PlayerClicks.RClick.performed += NonPick;
     }
 
     private void OnDisable()
     {
         inputActions.PlayerClicks.Click.performed -= BoardClick;
+        inputActions.PlayerClicks.RClick.performed -= NonPick;
         inputActions.Disable();
     }
 
@@ -217,6 +219,16 @@ public class Player : MonoBehaviour
         barbarian2Price = barbarianPrice + (barbarianPrice * 0.5f);     // 15원
         warrior2Price = warriorPrice + (warriorPrice * 0.5f);           // 30원
         wizard2Price = wizardPrice + (wizardPrice * 0.5f);              // 75원
+    }
+
+    /// <summary>
+    /// solider 배치를 위해 버튼을 누른 상태에서 우클릭하면 취소되는 함수
+    /// </summary>
+    /// <param name="context"></param>
+    private void NonPick(InputAction.CallbackContext context)
+    {
+        Debug.Log("우클릭 누름");
+        followMouse.SetFollowImageColorDisable();         // 마우스를 따라다니던 이미지 비활성화
     }
 
     /// <summary>
